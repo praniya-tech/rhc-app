@@ -1,6 +1,12 @@
 {% extends 'adminlte/base.html' %}
+{% load static %}
 
 {% block title %}Rasayu Healthcare{% endblock %}
+
+{% block extra_head %}
+<link rel="shortcut icon" href="{% static 'favicon.png' %}">
+{% endblock %}
+
 {% block content %}
     Just some example content
 {% endblock %}
