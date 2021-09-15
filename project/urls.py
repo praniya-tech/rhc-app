@@ -15,9 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+
+
+# https://django-allauth.readthedocs.io/en/latest/advanced.html#admin
+admin.site.login = login_required(admin.site.login)
 
 
 urlpatterns = [
     path('', include('webapp.urls')),
+
+    # https://django-allauth.readthedocs.io/en/latest/installation.html
+    path('accounts/', include('allauth.urls')),
+
     path('admin/', admin.site.urls),
+    # https://github.com/d-demirci/django-adminlte3/issues/33
+    path("logout/", lambda request: redirect("/admin/logout", permanent=False)),
 ]
