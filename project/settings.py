@@ -103,6 +103,7 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 
 # https://django-adminlte2.readthedocs.io/en/latest/templates_and_blocks.html
 LOGOUT_URL = '/accounts/logout/'
+LOGIN_URL = '/accounts/login/'
 
 
 MIDDLEWARE = [
