@@ -64,6 +64,8 @@ if DJANGO_HOST == "production":
 # Application definition
 
 INSTALLED_APPS = [
+    'webapp', # keep before `adminlte3`, `allauth`
+
     # https://github.com/d-demirci/django-adminlte3
     # General use templates & template tags (should appear first)
     'adminlte3',
@@ -77,8 +79,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',  # needed by `allauth`
-
-    'webapp', # keep before `allauth`
 
     'allauth',  # https://django-allauth.readthedocs.io/en/latest/installation.html
     'allauth.account',
@@ -99,6 +99,10 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+
+
+# https://django-adminlte2.readthedocs.io/en/latest/templates_and_blocks.html
+LOGOUT_URL = '/accounts/logout/'
 
 
 MIDDLEWARE = [
