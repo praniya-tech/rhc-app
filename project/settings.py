@@ -78,13 +78,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',  # needed by `allauth`
 
+    'webapp', # keep before `allauth`
+
     'allauth',  # https://django-allauth.readthedocs.io/en/latest/installation.html
     'allauth.account',
     'allauth.socialaccount',
     # ... include the social auth providers you want to enable
 
-    'webapp',
+    'crispy_forms',  # https://django-crispy-forms.readthedocs.io/en/latest/install.html
 ]
+
+
+# https://django-crispy-forms.readthedocs.io/en/latest/install.html
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 SITE_ID = 1  # `allauth`
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
@@ -92,6 +99,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
