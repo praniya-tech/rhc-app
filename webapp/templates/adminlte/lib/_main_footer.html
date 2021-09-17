@@ -1,0 +1,25 @@
+{% extends 'adminlte/lib/_main_footer.html' %}
+
+{% load i18n %}
+
+{% block footer_right %}
+{% blocktrans %}
+Developed by
+<a href="https://www.praniya.com" target="_blank">
+    Praniya Technologies
+</a>
+{% endblocktrans %}
+{% endblock %}
+
+{% block legal %}
+<span>
+    <b>
+        {% blocktrans %}Copyright &copy;{% endblocktrans %}
+        {% now "Y" %}
+        {% blocktrans %}
+        <a href="https://www.rasayucancerclinic.com" target="_blank">Rasayu Group</a>.
+        {% endblocktrans %}
+    </b>
+    {% blocktrans %}All rights reserved.{% endblocktrans %}
+</span>
+{% endblock %}
