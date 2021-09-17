@@ -36,11 +36,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv(
-    'RHCAPP_DJANGO_SECRET_KEY',
-    # safe value used for development when DJANGO_SECRET_KEY might not be set
-    'django-insecure-)7k4vky4@q61ahh74&y0yba90a!iztaf)jbc%65b7=@ill3-r0'
-)
+SECRET_KEY = os.getenv('RHCAPP_DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if DJANGO_HOST == "production":
@@ -189,11 +185,11 @@ USE_TZ = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_SUBJECT_PREFIX = '[rhcapp] '
+EMAIL_HOST_PASSWORD = os.getenv('RHCAPP_EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = os.getenv('RHCAPP_EMAIL_HOST_USER')
+EMAIL_SUBJECT_PREFIX = '[Rasayu] '
 
-ADMINS = [('Amol', 'amolkhiste@zoho.com'),]
+ADMINS = [('Admin', os.getenv('RHCAPP_ADMIN_1_EMAIL')),]
 
 
 # Static files (CSS, JavaScript, Images)
