@@ -1,5 +1,35 @@
 {% extends 'adminlte/lib/_main_header.html' %}
 
+{% load i18n %}
+
 {% block change_password_url %}
 {% url 'account_change_password' %}
 {% endblock change_password_url %}
+
+
+{% block nav_bar_left %}
+<!-- Left navbar links -->
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+        <a href="/" class="nav-link">
+        {% blocktrans %}Home{% endblocktrans %}
+        </a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+        <a href="{% url 'rhcapp_about_rasayu' %}" class="nav-link">
+        {% blocktrans %}About Rasayu{% endblocktrans %}
+        </a>
+    </li>
+    {% if user.authenticated and user.is_staff %}
+    <li class="nav-item d-none d-sm-inline-block">
+        <a href="/admin" class="nav-link">Admin</a>
+    </li>
+    {% endif %}
+</ul>
+{% endblock nav_bar_left %}
+
+{% block nav_bar_center %}
+{% endblock nav_bar_center %}
