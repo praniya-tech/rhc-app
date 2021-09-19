@@ -13,5 +13,13 @@ urlpatterns = [
     path(
         'about-rasayu',
         TemplateView.as_view(template_name='webapp/about_rasayu.html'),
-        name='rhcapp_about_rasayu')
+        name='rhcapp_about_rasayu'),
+    path(
+        'about',
+        TemplateView.as_view(template_name='webapp/about.html'),
+        name='rhcapp_about'),
+    path(
+        'tos',
+        TemplateView.as_view(template_name='webapp/tos.html'),
+        name='rhcapp_tos')
 ]

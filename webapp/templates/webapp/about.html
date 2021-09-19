@@ -1,0 +1,67 @@
+{% extends 'webapp/base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+
+<section>
+
+    <h1>{% blocktrans %} About {% endblocktrans %}</h1>
+
+    {% blocktrans %}
+
+    <p>
+        Āyurveda is an ancient Indian science practiced since millenia. Āyurveda
+        inherently focuses on preventive healthcare. This app attempts to do a
+        high level health and risk assessment through interactive
+        questionnaires and tracking and give personalised and preventive
+        healthcare recommendations.
+    </p>
+
+    <h2>Health (svāsthya) assessment</h2>
+
+    <p>
+        Āyurveda classifies a person we generally consider to be "healthy"
+        further as disease-free (nirogī) and healthy (svastha). A svastha
+        person is more likely to enjoy a happier, longer and fulfilling life.
+        The app attempts to do a high level health assessment of the user based
+        on a health assessment questionnaire. The app provides recommendations
+        to improve or maintain a good health.
+    </p>
+
+    <h2>Daily, seasonal routine (dinacaryā, ṛtucaryā)</h2>
+    <p>
+        The life style as recommended by Āyurveda is quite easy to follow. In
+        India, the general daily and seasonal routines and regimens prescribed
+        by Āyurveda were quite well known and practiced by the people and was
+        traditionally passed on through generations. However, due to various
+        factors this knowledge and practice has gradually waned. This app aims
+        to enable users to inculcate this practice and follow it throughout
+        their life.
+    </p>
+
+    <h2>Health risk assessment and mitigation</h2>
+
+    <p>
+        Based on a person's quality of tissue (dhātu sāratā), family history,
+        lifestyle, and other factors, Āyurveda enables assessing health risks
+        and accordingly recommending preventive measures for the same.
+    </p>
+
+    {% endblocktrans %}
+
+</section>
+
+<hr>
+
+<footer>
+    <i>
+        <b>Note:</b>
+        Sanskrit (saṃskṛta) words are represented in English using
+        <a href="https://en.wikipedia.org/wiki/International_Alphabet_of_Sanskrit_Transliteration"
+            target="_blank">
+            IAST</a> in this app.
+    </i>
+</footer>
+
+{% endblock content%}

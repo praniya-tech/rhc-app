@@ -19,8 +19,8 @@
         </a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-        <a href="{% url 'rhcapp_about_rasayu' %}" class="nav-link">
-        {% blocktrans %}About Rasayu{% endblocktrans %}
+        <a href="{% url 'rhcapp_about' %}" class="nav-link">
+        {% blocktrans %}About{% endblocktrans %}
         </a>
     </li>
     {% if user.is_authenticated and user.is_staff %}
