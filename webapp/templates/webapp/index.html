@@ -31,18 +31,36 @@
 
 <div class="card-deck">
     <div class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
+        {% comment %} <img class="card-img-top" src="..." alt="Card image cap">
+        {% endcomment %}
+        <div class="card-header">
+        {% blocktrans %}
+        Track and improve your health
+        {% endblocktrans %}
+        </div>
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below
-                as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
+            <h5 class="card-title">
+                {% blocktrans %}
+                Health (svāsthya) assessment
+                {% endblocktrans %}
+            </h5>
+            <p class="card-text">
+                {% blocktrans %}
+                Answer a questionnaire and imporove or maintain a good health!
+                {% endblocktrans %}
+        </div>
+        <div class="card-body">
+            <a class="btn btn-primary btn-block"
+                href="{% url 'rhcapp_svasthya_questionnaire' %}" role="button">
+                {% blocktrans %}Assess your health{% endblocktrans %}
+            </a>
+            </p>
         </div>
         <div class="card-footer">
             <small class="text-muted">Last updated 3 mins ago</small>
         </div>
     </div>
-    <div class="card">
+    {% comment %} <div class="card">
         <img class="card-img-top" src="..." alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">Card title</h5>
@@ -65,7 +83,7 @@
         <div class="card-footer">
             <small class="text-muted">Last updated 3 mins ago</small>
         </div>
-    </div>
+    </div> {% endcomment %}
 </div>
 
 {% endblock %}

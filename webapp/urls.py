@@ -21,5 +21,9 @@ urlpatterns = [
     path(
         'tos',
         TemplateView.as_view(template_name='webapp/tos.html'),
-        name='rhcapp_tos')
+        name='rhcapp_tos'),
+    path(
+        'svāsthya-questionnaire',
+        TemplateView.as_view(template_name='webapp/svasthya_questionnaire.html'),
+        name='rhcapp_svasthya_questionnaire'),
 ]
