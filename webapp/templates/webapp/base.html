@@ -1,5 +1,20 @@
 {% extends 'adminlte/base.html' %}
-{% load static %}
+{% load static i18n %}
+
+{% block body %}
+    <div class="alert alert-danger" role="alert">
+        <center>
+            <h5>
+                This app is currently under development and for demonstration
+                purpose only. DO NOT enter any personally identifiable
+                information here.<br>View
+                <a href="rhcapp_terms">
+                {% blocktrans %}Terms{% endblocktrans %}</a>.
+            </h5>
+        </center>
+    </div>
+    {{ block.super }}
+{% endblock body %}
 
 {% block title %}Rasāyu Healthcare{% endblock %}
 
