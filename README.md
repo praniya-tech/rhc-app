@@ -1,2 +1,2 @@
 # rhc-app
-Rasayu healthcare app API and web app.
+Rasāyu healthcare app API and web app.
