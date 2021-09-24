@@ -60,12 +60,12 @@ if DJANGO_HOST == "production":
 # Application definition
 
 INSTALLED_APPS = [
-    'webapp', # keep before `adminlte3`, `allauth`
+    'webapp',  # keep before `adminlte3`, `allauth`
 
     # https://github.com/d-demirci/django-adminlte3
     # General use templates & template tags (should appear first)
     'adminlte3',
-     # Optional: Django admin theme (must be before django.contrib.admin)
+    # Optional: Django admin theme (must be before django.contrib.admin)
     'adminlte3_theme',
 
     'django.contrib.admin',
@@ -100,6 +100,7 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 # https://django-adminlte2.readthedocs.io/en/latest/templates_and_blocks.html
 LOGOUT_URL = '/accounts/logout/'
 LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = "/"
 
 
 MIDDLEWARE = [
@@ -189,7 +190,7 @@ EMAIL_HOST_PASSWORD = os.getenv('RHCAPP_EMAIL_HOST_PASSWORD')
 EMAIL_HOST_USER = os.getenv('RHCAPP_EMAIL_HOST_USER')
 EMAIL_SUBJECT_PREFIX = '[Rasāyu] '
 
-ADMINS = [('Admin', os.getenv('RHCAPP_ADMIN_1_EMAIL')),]
+ADMINS = [('Admin', os.getenv('RHCAPP_ADMIN_1_EMAIL')), ]
 
 
 # Static files (CSS, JavaScript, Images)
