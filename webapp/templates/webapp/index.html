@@ -11,7 +11,7 @@
     <p class="lead">
         {% blocktrans %}
         Live a long, happy and fulfilling life with easy to follow presonalised
-        and preventive health recommendations based on Āyurveda.
+        and preventive healthcare recommendations based on Āyurveda.
         {% endblocktrans %}
     </p>
     <hr class="my-4">
@@ -30,60 +30,128 @@
 </div>
 
 <div class="card-deck">
-    <div class="card">
+    <div class="card text-center">
         {% comment %} <img class="card-img-top" src="..." alt="Card image cap">
         {% endcomment %}
         <div class="card-header">
-        {% blocktrans %}
-        Track and improve your health
-        {% endblocktrans %}
+            {% blocktrans %}
+            Track and improve your health
+            {% endblocktrans %}
         </div>
         <div class="card-body">
-            <h5 class="card-title">
+            {# Removed `.card-title` as otherwise title is not center aligned #}
+            <h5> {# class="card-title"> #}
                 {% blocktrans %}
                 Health (svāsthya) assessment
                 {% endblocktrans %}
             </h5>
             <p class="card-text">
                 {% blocktrans %}
-                Answer a questionnaire and imporove or maintain a good health!
+                Are you really healthy? Assess and track your health, follow
+                simple tips and get the most out of your life! Get reminders for
+                periodic assessments to track and maintain a good health or
+                gradually improve it with relevant tips.
                 {% endblocktrans %}
-        </div>
-        <div class="card-body">
-            <a class="btn btn-primary btn-block"
-                href="{% url 'rhcapp_svasthya_questionnaire' %}" role="button">
-                {% blocktrans %}Assess your health{% endblocktrans %}
-            </a>
             </p>
+            <div>
+                <a class="btn btn-primary"
+                    href="{% url 'rhcapp_svasthya_questionnaire' %}"
+                    role="button">
+                    {% blocktrans %}Assess your health{% endblocktrans %}
+                </a>
+            </div>
         </div>
         <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
+            <small class="text-muted">
+                {% blocktrans %}
+                No follow up reminders yet.<br>
+                {% endblocktrans %}
+                <a href="{% url 'rhcapp_svasthya_questionnaire' %}">
+                    {% blocktrans %}
+                    Take your first assessment!
+                    {% endblocktrans %}
+                </a>
+            </small>
         </div>
     </div>
-    {% comment %} <div class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card text-center">
+        {% comment %} <img class="card-img-top" src="..." alt="Card image cap">
+        {% endcomment %}
+        <div class="card-header">
+            {% blocktrans %}
+            Seasonal routine and regimen
+            {% endblocktrans %}
+        </div>
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a
-                natural lead-in to additional content.</p>
+            {# Removed `.card-title` as otherwise title is not center aligned #}
+            <h5> {# class="card-title"> #}
+                {% blocktrans %}
+                Prakṛti assessment
+                {% endblocktrans %}
+            </h5>
+            <p class="card-text">
+                {% blocktrans %}
+                Get personalised tips and reminders on adjusting your lifestyle
+                as per the changing seasons. Take timely precautions to avoid
+                seasonal ailments. All this personalised as per your prakṛti.
+                {% endblocktrans %}
+            </p>
+            <div>
+                <a class="btn btn-primary"
+                    href="{% url 'rhcapp_svasthya_questionnaire' %}"
+                    role="button">
+                    {% blocktrans %}Assess your prakṛti{% endblocktrans %}
+                </a>
+            </div>
         </div>
         <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
+            <small class="text-muted">
+                {% blocktrans %}
+                Get seasonal tips and reminders.
+                {% endblocktrans %}
+            </small>
         </div>
     </div>
-    <div class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card text-center">
+        {% comment %} <img class="card-img-top" src="..." alt="Card image cap">
+        {% endcomment %}
+        <div class="card-header">
+            {% blocktrans %}
+            Preventive healthcare tips
+            {% endblocktrans %}
+        </div>
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below
-                as a natural lead-in to additional
-                content. This card has even longer content than the first to
-                show that equal height action.</p>
+            {# Removed `.card-title` as otherwise title is not center aligned #}
+            <h5> {# class="card-title"> #}
+                {% blocktrans %}
+                Risk factors assessment
+                {% endblocktrans %}
+            </h5>
+            <p class="card-text">
+                {% blocktrans %}
+                Get recommendations on preventive healthcare based on various
+                factors such as your dhātu sāratā (quality of body tissues),
+                family medical history, lifestyle, etc.
+                {% endblocktrans %}
+            </p>
+            <div>
+                <a class="btn btn-primary"
+                    href="{% url 'rhcapp_svasthya_questionnaire' %}"
+                    role="button">
+                    {% blocktrans %}
+                    Assess your risk factors
+                    {% endblocktrans %}
+                </a>
+            </div>
         </div>
         <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
+            <small class="text-muted">
+                {% blocktrans %}
+                Get preventive tips.
+                {% endblocktrans %}
+            </small>
         </div>
-    </div> {% endcomment %}
+    </div>
 </div>
 
 {% endblock %}
