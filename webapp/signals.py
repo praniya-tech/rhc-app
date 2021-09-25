@@ -5,7 +5,7 @@ import logging
 from allauth.account.signals import user_signed_up, user_logged_in
 
 
-log = logging.getLogger('django.request')
+log = logging.getLogger('django')
 
 
 @receiver(user_logged_in)
