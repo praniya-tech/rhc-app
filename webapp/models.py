@@ -9,4 +9,4 @@ class Profile(models.Model):
     crf_patient_pk = models.PositiveBigIntegerField()
 
     def __str__(self):
-        return str(self.crf_pk)
+        return str(self.crf_patient_pk)
