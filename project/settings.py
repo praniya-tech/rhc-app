@@ -193,6 +193,14 @@ EMAIL_SUBJECT_PREFIX = '[Rasāyu] '
 ADMINS = [('Admin', os.getenv('RHCAPP_ADMIN_1_EMAIL')), ]
 
 
+CRF_API_URL_BASE = os.getenv(
+    'CRF_API_URL_HOST',
+    'http://localhost:8000/rhcapi/')
+CRF_API_HEADERS = {
+    'Authorization': 'Token ' + os.getenv('RHCAPP_AUTH_TOKEN', ''),
+}
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 

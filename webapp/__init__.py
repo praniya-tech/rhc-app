@@ -1,1 +1,1 @@
-from webapp.signals import *
+default_app_config = 'webapp.apps.WebappConfig'
