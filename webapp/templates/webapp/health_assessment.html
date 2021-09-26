@@ -1,0 +1,29 @@
+{% extends 'webapp/base.html' %}
+
+{% load i18n static %}
+
+{% block extra_head %}
+{{ block.super }}
+{% endblock extra_head %}
+
+{% block content %}
+
+<h1>
+    {% blocktrans %}
+    Health assessment
+    {% endblocktrans %}
+</h1>
+
+
+
+{% endblock content %}
+
+{% block extra_js %}
+<script type="text/javascript" charset="utf-8">
+    // GLOBALS
+    const RHCAPP = {
+        CRF_PATIENT_PK: "{{ user.profile.crf_patient_pk }}",
+    };
+</script>
+<script src="{% static 'webapp/js/health_assessment.js' %}"></script>
+{% endblock %}
