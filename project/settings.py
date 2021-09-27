@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import socket
 import os
+import logging
 
 from . import database
 
@@ -80,6 +81,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     # ... include the social auth providers you want to enable
+
+    'rest_framework',  # https://www.django-rest-framework.org/
 
     'crispy_forms',  # https://django-crispy-forms.readthedocs.io/en/latest/install.html
 ]
@@ -191,6 +194,9 @@ EMAIL_HOST_USER = os.getenv('RHCAPP_EMAIL_HOST_USER')
 EMAIL_SUBJECT_PREFIX = '[Rasāyu] '
 
 ADMINS = [('Admin', os.getenv('RHCAPP_ADMIN_1_EMAIL')), ]
+
+
+DJANGO_LOGGER = logging.getLogger('django')
 
 
 CRF_API_URL_BASE = os.getenv(
