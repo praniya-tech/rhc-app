@@ -18,9 +18,19 @@ from django.urls import path, include
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
+from rest_framework import routers
+
+from appapi import views as appapi_views
+
 
 # https://django-allauth.readthedocs.io/en/latest/advanced.html#admin
 admin.site.login = login_required(admin.site.login)
+
+appapi_router = routers.DefaultRouter()  # appapi
+appapi_router.register(
+    prefix=r'svasthyaquestionnaire',
+    basename='svasthyaquestionnaire-list',
+    viewset=appapi_views.SvasthyaQuestionnaireViewSet)
 
 
 urlpatterns = [
@@ -32,4 +42,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # https://github.com/d-demirci/django-adminlte3/issues/33
     path("logout/", lambda request: redirect("/admin/logout", permanent=False)),
+
+    path('appapi/', include(appapi_router.urls)),
+    path('appapi-auth/', include('rest_framework.urls')),
 ]
