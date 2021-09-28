@@ -2,10 +2,6 @@
 
 {% load i18n static %}
 
-{% block extra_head %}
-{{ block.super }}
-{% endblock extra_head %}
-
 {% block content %}
 
 <h1>
@@ -14,7 +10,16 @@
     {% endblocktrans %}
 </h1>
 
-
+<div id="id_no_questionnaires" style="display: none;">
+    {% blocktrans %}
+    No assessment done yet.
+    {% endblocktrans %}
+    <a href="{% url 'rhcapp_svasthya_questionnaire' %}">
+        {% blocktrans %}
+        Take your first assessment.
+        {% endblocktrans %}
+    </a>
+</div>
 
 {% endblock content %}
 

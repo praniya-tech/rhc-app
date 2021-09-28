@@ -29,7 +29,7 @@ admin.site.login = login_required(admin.site.login)
 appapi_router = routers.DefaultRouter()  # appapi
 appapi_router.register(
     prefix=r'svasthyaquestionnaire',
-    basename='svasthyaquestionnaire-list',
+    basename='svasthyaquestionnaire',
     viewset=appapi_views.SvasthyaQuestionnaireViewSet)
 
 

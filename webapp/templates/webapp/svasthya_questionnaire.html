@@ -1,0 +1,54 @@
+{% extends 'webapp/base.html' %}
+
+{% load i18n static %}
+
+{% block content %}
+
+{% if question_types %}
+<div class="d-flex justify-content-center">
+    <div class="card text-center" style="min-width:50rem">
+        <div class="card-body">
+            <h1>{% trans "Svāsthya questionnaire"%}</h1>
+            <form method="post" action="appapi/svasthyaquestionnaire.html">
+                {# action="{% url 'submit_svasthya_questionnaire' %}"> #}
+                {% csrf_token %}
+                {% for qt in question_types %}
+                <div class="form-group row justify-content-between">
+                    <input type="hidden" readonly value={{ qt.order }}
+                        name="q-{{ qt.order }}">
+                    </input>
+                    <label for="id_response_{{ forloop.counter }}"
+                        class="col-auto col-form-label">
+                        {{ forloop.counter }}.
+                        {{ qt.question }}
+                    </label>
+                    <div class="col-auto">
+                        <select class="form-control" required
+                            id="id_response_{{ forloop.counter }}"
+                            name="r-{{ qt.order }}">
+                            {% blocktrans %}
+                            <option value="">--Select a response--</option>
+                            <option value="0">0 - Not at all</option>
+                            <option value="1">1 - A little bit</option>
+                            <option value="2">2 - To some extent</option>
+                            <option value="3">3 - Rather much</option>
+                            <option value="4">4 - Very much</option>
+                            {% endblocktrans %}
+                        </select>
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
+                <button class="btn btn-primary text-center"
+                    type="submit">{% trans 'Submit' %}</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock content %}
+
+{% block extra_js %}
+<script src="{% static 'webapp/js/svasthya_questionnaire.js' %}"></script>
+{% endblock %}
