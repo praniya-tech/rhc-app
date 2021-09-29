@@ -31,7 +31,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Date</th>
-                            <th scope="col">Score</th>
+                            <th scope="col">Score (out of 32)</th>
                             <th scope="col">View questionnaire</th>
                         </tr>
                     </thead>
@@ -55,12 +55,146 @@
         <span>
             Your next assessment is/was due on
             <b>{{ next_assessment_date|date }}</b>.
+            <a href="{% url 'rhcapp_svasthya_questionnaire' %}">
+                {% blocktrans %}
+                Take your next assessment.
+                {% endblocktrans %}
+            </a>
         </span>
-        <a href="{% url 'rhcapp_svasthya_questionnaire' %}">
-            {% blocktrans %}
-            Take another assessment.
-            {% endblocktrans %}
-        </a>
+        <hr>
+        <h2>{% trans "Healthy tips" %}</h2>
+        {% blocktrans %}
+        <table class="table text-left">
+            <thead>
+                <tr>
+                    <th scope="col">Question</th>
+                    <th scope="col">Tips for improving and maintaining</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        How well do you manage to do your routine work
+                        comfortably?
+                    </th>
+                    <td>
+                        <ol>
+                            <li>Try reducing your food intake by 20%.</li>
+                            <li>Drink water in proportion to your thirst: Avoid
+                                drinking excess water.</li>
+                            <li>Avoid sleeping in afternoon, especially
+                                immediately after lunch.
+                            </li>
+                            <li>Avoid excessive, untimely exercise.</li>
+                            <li>Avoid sexual interaction prior to hectic
+                                schedule.
+                            </li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        What is your level of enthusiasm on waking up in the
+                        morning?
+                    </th>
+                    <td>
+                        <ol>
+                            <li>Avoid eating late dinners.</li>
+                            <li>Proportionately reduce food intake as per delay
+                                in dinner time.</li>
+                            <li>Sleep early and wake up early to feel
+                                enthusiastic.</li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        How good is your appetite?
+                    </th>
+                    <td>
+                        <ol>
+                            <li>Avoid grazing during the day to have good
+                                appetite during meals.</li>
+                            <li>Avoid having water before meals.</li>
+                            <li>Good exercise helps increase appetite.</li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        How well do you relish your meals?
+                    </th>
+                    <td>
+                        <ol>
+                            <li>Timely meals help develop relish in food.</li>
+                            <li>Avoid any distractions while consuming food.
+                            </li>
+                            <li>Focus on food while eating.</li>
+                            <li>Have fresh, home-made food.</li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        How regular and satisfactory is your bowel movement?
+                    </th>
+                    <td>
+                        <ol>
+                            <li>Regular exercises are necessary for regular
+                                bowel movement.</li>
+                            <li>Stress has adverse effect on bowel movement.
+                                Meditation and pranayam help relieve stress.
+                            </li>
+                            <li>Have half glass of warm water with 1 teaspoon
+                                desi ghee in the night to have good bowel next
+                                day.
+                            </li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        Do you have timely and sound sleep?
+                    </th>
+                    <td>
+                        <ol>
+                            <li>Regular pranayam in the night.</li>
+                            <li>Prayers/ meditation in the night.</li>
+                            <li>Avoid indulging in any stimulating activity
+                                before sleep.</li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        How comfortably do you pass urine?
+                    </th>
+                    <td>
+                        <ol>
+                            <li>Avoid excess water to reduce urine quantity.
+                            </li>
+                            <li>Drink water only in proportion to your thirst.
+                            </li>
+                            <li>Drink less water after sunset.</li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        How content are you with life?
+                    </th>
+                    <td>
+                        <ol>
+                            <li>Regular meditation, pranayam.</li>
+                            <li>Try to reduce your desires.</li>
+                            <li>Lead a simple life.</li>
+                            <li>Be in company of good people.</li>
+                        </ol>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {% endblocktrans %}
     </div>
 </div>
 {% endif %}
