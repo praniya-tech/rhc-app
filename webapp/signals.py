@@ -37,7 +37,8 @@ def on_user_logged_in(sender, **kwargs):
             url=urljoin(
                 CRF_API_URL_BASE,
                 'patient/{}.json'.format(crf_patient_pk)),
-            headers=CRF_API_HEADERS)
+            headers=CRF_API_HEADERS,
+            data={'patient_id': crf_patient_pk})
         response.raise_for_status()
         data = response.json()
         pass
