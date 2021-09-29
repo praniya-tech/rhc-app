@@ -18,7 +18,7 @@ def on_user_signed_up(sender, **kwargs):
         response = requests.post(
             url=urljoin(CRF_API_URL_BASE, 'patient.json'),
             headers=CRF_API_HEADERS,
-            data={'email': user.email})
+            data={'email': user.email, 'username': user.username})
         response.raise_for_status()
         crf_patient = response.json()
         profile = Profile(user=user, crf_patient_pk=crf_patient['pk'])
