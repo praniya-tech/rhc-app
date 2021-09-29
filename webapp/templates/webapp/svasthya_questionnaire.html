@@ -4,12 +4,50 @@
 
 {% block content %}
 
+{% if questionnaire %}
+<div class="d-flex justify-content-center">
+    <div class="card text-center" style="min-width:50rem">
+        <div class="card-body">
+            <h1>{% trans "Svāsthya questionnaire" %}</h1>
+            <span>
+                <h2>
+                    {% trans "Date:" %} {{ questionnaire.date }}.
+                    {% trans "Score:" %} {{ questionnaire.score }}
+                </h2>
+            </span>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Question</th>
+                        <th scope="col">Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for qr in questionnaire.questions %}
+                    <tr>
+                        <td>{{ forloop.counter }}. {{ qr.question.question }}
+                        </td>
+                        <td>{{ qr.response }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <hr>
+            <a type="button" class="btn btn-primary"
+                href="{% url 'rhcapp_health_assessment' %}">
+                {% trans 'Back' %}
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
 {% if question_types %}
 <div class="d-flex justify-content-center">
     <div class="card text-center" style="min-width:50rem">
         <div class="card-body">
             <h1>{% trans "Svāsthya questionnaire"%}</h1>
-            <form method="post" action="appapi/svasthyaquestionnaire.html">
+            <form method="post" action="appapi/svasthyaquestionnaire/">
                 {# action="{% url 'submit_svasthya_questionnaire' %}"> #}
                 {% csrf_token %}
                 {% for qt in question_types %}
@@ -39,8 +77,13 @@
                 </div>
                 <hr>
                 {% endfor %}
-                <button class="btn btn-primary text-center"
-                    type="submit">{% trans 'Submit' %}</button>
+                <button class="btn btn-primary" type="submit">
+                    {% trans 'Submit' %}
+                </button>
+                <a type="button" class="btn btn-secondary"
+                    href="{% url 'rhcapp_health_assessment' %}">
+                    {% trans 'Back' %}
+                </a>
             </form>
         </div>
     </div>

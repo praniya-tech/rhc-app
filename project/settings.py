@@ -15,6 +15,8 @@ import socket
 import os
 import logging
 
+from django.conf.locale.en import formats as en_formats
+
 from . import database
 
 
@@ -184,6 +186,14 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+en_formats.DATE_INPUT_FORMATS = (
+    "%d/%m/%Y", "%d/%n/%Y",
+    "%j/%m/%Y", "%j/%n/%Y",
+    "%d/%m/%y", "%d/%n/%y",
+    "%j/%m/%y", "%j/%n/%y"
+)
+en_formats.DATE_FORMAT = 'd/m/Y'
 
 
 EMAIL_HOST = 'smtp.gmail.com'

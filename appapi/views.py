@@ -2,6 +2,9 @@ import requests
 from urllib.parse import urljoin
 import json
 
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 from rest_framework import viewsets
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 from rest_framework.response import Response
@@ -62,8 +65,8 @@ class SvasthyaQuestionnaireViewSet(viewsets.ViewSet):
         response.raise_for_status()
         # https://stackoverflow.com/questions/18925358/how-do-you-access-data-in-the-template-when-using-drf-modelviewset-and-templateh
         if request.accepted_renderer.format == 'html':
-            return Response(
-                {'added_questionnaire': response.data},
-                template_name='webapp/health_assessment.html')
+            #added_questionnaire = response.json()
+            return HttpResponseRedirect(
+                redirect_to=reverse('rhcapp_health_assessment'))
         else:
             return response.data

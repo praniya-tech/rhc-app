@@ -4,7 +4,7 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from django.contrib.auth.decorators import login_required
 
-from webapp.views import SvasthyaQuestionnaireView
+from webapp.views import SvasthyaQuestionnaireView, HealthAssessmentView
 
 
 urlpatterns = [
@@ -28,7 +28,7 @@ urlpatterns = [
     path(
         'health-assessment',
         login_required(
-            TemplateView.as_view(
+            HealthAssessmentView.as_view(
                 template_name='webapp/health_assessment.html')),
         name='rhcapp_health_assessment'),
     path(
@@ -37,4 +37,10 @@ urlpatterns = [
             SvasthyaQuestionnaireView.as_view(
                 template_name='webapp/svasthya_questionnaire.html')),
         name='rhcapp_svasthya_questionnaire'),
+    path(
+        'svasthya-questionnaire/<int:id>/',
+        login_required(
+            SvasthyaQuestionnaireView.as_view(
+                template_name='webapp/svasthya_questionnaire.html')),
+        name='rhcapp_svasthya_questionnaire')
 ]
