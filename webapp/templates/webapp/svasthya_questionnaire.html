@@ -25,7 +25,8 @@
                 <tbody>
                     {% for qr in questionnaire.questions %}
                     <tr>
-                        <td>{{ forloop.counter }}. {{ qr.question.question }}
+                        <td class="text-left">
+                            {{ forloop.counter }}. {{ qr.question.question }}
                         </td>
                         <td>{{ qr.response }}</td>
                     </tr>
