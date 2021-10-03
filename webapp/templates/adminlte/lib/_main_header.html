@@ -11,17 +11,19 @@
     </li>
     <li class="nav-item d-none d-sm-inline-block">
         <a href="/" class="nav-link">
-            {% blocktrans %}Home{% endblocktrans %}
+            {% trans "Home" %}
         </a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
         <a href="{% url 'rhcapp_about' %}" class="nav-link">
-            {% blocktrans %}About{% endblocktrans %}
+            {% trans "About" %}
         </a>
     </li>
     {% if user.is_authenticated and user.is_staff %}
     <li class="nav-item d-none d-sm-inline-block">
-        <a href="/admin" class="nav-link">Admin</a>
+        <a href="/admin" class="nav-link">
+            {% trans "Admin" %}
+        </a>
     </li>
     {% endif %}
 </ul>
@@ -39,7 +41,7 @@
 {% if not request.user.is_authenticated %}
 <li class="nav-item">
     <a class="nav-link" href="{% url 'account_login' %}"
-        title="{% blocktrans %}Sign in{% endblocktrans %}">
+        title="{% trans "Sign in" %}">
         <i class="fas fa fa-sign-in-alt fa-2x" aria-hidden="true"></i>
     </a>
 </li>

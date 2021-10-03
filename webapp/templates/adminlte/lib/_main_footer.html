@@ -14,15 +14,13 @@ Developed by
 {% block legal %}
 <span>
     <b>
-        {% blocktrans %}Copyright &copy;{% endblocktrans %}
+        {% trans "Copyright &copy;" %}
         {% now "Y" %}
-        {% blocktrans %}
-        <a href="https://www.rasayucancerclinic.com" target="_blank">Rasāyu</a>.
-        {% endblocktrans %}
+        <a href="https://www.rasayucancerclinic.com" target="_blank">
+            {% trans "Rasāyu" %}
+        </a>.
     </b>
-    {% blocktrans %}All rights reserved.{% endblocktrans %}
-    <a href="{% url 'rhcapp_tos' %}">
-    {% blocktrans %}Terms{% endblocktrans %}
-    </a>
+    {% trans "All rights reserved." %}
+    <a href="{% url 'rhcapp_tos' %}">{% trans "Terms" %}</a>
 </span>
 {% endblock %}

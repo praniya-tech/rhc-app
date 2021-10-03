@@ -18,8 +18,8 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Question</th>
-                        <th scope="col">Response</th>
+                        <th scope="col">{% trans "Question" %}</th>
+                        <th scope="col">{% trans "Response" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,14 +65,24 @@
                         <select class="form-control" required
                             id="id_response_{{ forloop.counter }}"
                             name="r-{{ qt.order }}">
-                            {% blocktrans %}
-                            <option value="">--Select a response--</option>
-                            <option value="0">0 - Not at all</option>
-                            <option value="1">1 - A little bit</option>
-                            <option value="2">2 - To some extent</option>
-                            <option value="3">3 - Rather much</option>
-                            <option value="4">4 - Very much</option>
-                            {% endblocktrans %}
+                            <option value="">
+                                {% trans "--Select a response--" %}
+                            </option>
+                            <option value="0">
+                                {% trans "0 - Not at all" %}
+                            </option>
+                            <option value="1">
+                                {% trans "1 - A little bit" %}
+                            </option>
+                            <option value="2">
+                                {% trans "2 - To some extent" %}
+                            </option>
+                            <option value="3">
+                                {% trans "3 - Rather much" %}
+                            </option>
+                            <option value="4">
+                                {% trans "4 - Very much" %}
+                            </option>
                         </select>
                     </div>
                 </div>

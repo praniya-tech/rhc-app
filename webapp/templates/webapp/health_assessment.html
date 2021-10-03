@@ -4,20 +4,14 @@
 
 {% block content %}
 
-<h1>
-    {% blocktrans %}
-    Health assessment
-    {% endblocktrans %}
-</h1>
+<h1>{% trans "Health assessment" %}</h1>
 
 <div id="id_no_questionnaires" style="display: none;">
     {% blocktrans %}
     No assessment done yet.
     {% endblocktrans %}
     <a href="{% url 'rhcapp_svasthya_questionnaire' %}">
-        {% blocktrans %}
-        Take your first assessment.
-        {% endblocktrans %}
+        {% trans "Take your first assessment." %}
     </a>
 </div>
 
@@ -30,9 +24,10 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Date</th>
-                            <th scope="col">Score (out of 32)</th>
-                            <th scope="col">View questionnaire</th>
+                            <th scope="col">{% trans "Date" %}</th>
+                            <th scope="col">{% trans "Score (out of 32)" %}</th>
+                            <th scope="col">{% trans "View questionnaire" %}
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,7 +38,7 @@
                             <td>
                                 <a
                                     href="{% url 'rhcapp_svasthya_questionnaire' id=sq.pk %}">
-                                    View
+                                    {% trans "View" %}
                                 </a>
                             </td>
                         </tr>
@@ -53,31 +48,35 @@
             </div>
         </div>
         <span>
+            {% blocktrans %}
             Your next assessment is/was due on
+            {% endblocktrans %}
             <b>{{ next_assessment_date|date }}</b>.
             <a href="{% url 'rhcapp_svasthya_questionnaire' %}">
-                {% blocktrans %}
-                Take your next assessment.
-                {% endblocktrans %}
+                {% trans "Take your next assessment." %}
             </a>
         </span>
         <hr>
         <h2>{% trans "Healthy tips" %}</h2>
-        {% blocktrans %}
         <table class="table text-left">
             <thead>
                 <tr>
-                    <th scope="col">Question</th>
-                    <th scope="col">Tips for improving and maintaining</th>
+                    <th scope="col">{% trans "Question" %}</th>
+                    <th scope="col">
+                        {% trans "Tips for improving and maintaining" %}
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th scope="row">
+                        {% blocktrans %}
                         How well do you manage to do your routine work
                         comfortably?
+                        {% endblocktrans %}
                     </th>
                     <td>
+                        {% blocktrans %}
                         <ol>
                             <li>Try reducing your food intake by 20%.</li>
                             <li>Drink water in proportion to your thirst: Avoid
@@ -90,14 +89,18 @@
                                 schedule.
                             </li>
                         </ol>
+                        {% endblocktrans %}
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">
+                        {% blocktrans %}
                         What is your level of enthusiasm on waking up in the
                         morning?
+                        {% endblocktrans %}
                     </th>
                     <td>
+                        {% blocktrans %}
                         <ol>
                             <li>Avoid eating late dinners.</li>
                             <li>Proportionately reduce food intake as per delay
@@ -105,26 +108,34 @@
                             <li>Sleep early and wake up early to feel
                                 enthusiastic.</li>
                         </ol>
+                        {% endblocktrans %}
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">
+                        {% blocktrans %}
                         How good is your appetite?
+                        {% endblocktrans %}
                     </th>
                     <td>
+                        {% blocktrans %}
                         <ol>
                             <li>Avoid grazing during the day to have good
                                 appetite during meals.</li>
                             <li>Avoid having water before meals.</li>
                             <li>Good exercise helps increase appetite.</li>
                         </ol>
+                        {% endblocktrans %}
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">
+                        {% blocktrans %}
                         How well do you relish your meals?
+                        {% endblocktrans %}
                     </th>
                     <td>
+                        {% blocktrans %}
                         <ol>
                             <li>Timely meals help develop relish in food.</li>
                             <li>Avoid any distractions while consuming food.
@@ -132,13 +143,17 @@
                             <li>Focus on food while eating.</li>
                             <li>Have fresh, home-made food.</li>
                         </ol>
+                        {% endblocktrans %}
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">
+                        {% blocktrans %}
                         How regular and satisfactory is your bowel movement?
+                        {% endblocktrans %}
                     </th>
                     <td>
+                        {% blocktrans %}
                         <ol>
                             <li>Regular exercises are necessary for regular
                                 bowel movement.</li>
@@ -150,26 +165,34 @@
                                 day.
                             </li>
                         </ol>
+                        {% endblocktrans %}
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">
+                        {% blocktrans %}
                         Do you have timely and sound sleep?
+                        {% endblocktrans %}
                     </th>
                     <td>
+                        {% blocktrans %}
                         <ol>
                             <li>Regular pranayam in the night.</li>
                             <li>Prayers/ meditation in the night.</li>
                             <li>Avoid indulging in any stimulating activity
                                 before sleep.</li>
                         </ol>
+                        {% endblocktrans %}
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">
+                        {% blocktrans %}
                         How comfortably do you pass urine?
+                        {% endblocktrans %}
                     </th>
                     <td>
+                        {% blocktrans %}
                         <ol>
                             <li>Avoid excess water to reduce urine quantity.
                             </li>
@@ -177,28 +200,31 @@
                             </li>
                             <li>Drink less water after sunset.</li>
                         </ol>
+                        {% endblocktrans %}
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">
+                        {% blocktrans %}
                         How content are you with life?
+                        {% endblocktrans %}
                     </th>
                     <td>
+                        {% blocktrans %}
                         <ol>
                             <li>Regular meditation, pranayam.</li>
                             <li>Try to reduce your desires.</li>
                             <li>Lead a simple life.</li>
                             <li>Be in company of good people.</li>
                         </ol>
+                        {% endblocktrans %}
                     </td>
                 </tr>
             </tbody>
         </table>
-        {% endblocktrans %}
     </div>
 </div>
 {% endif %}
-
 
 {% endblock content %}
 

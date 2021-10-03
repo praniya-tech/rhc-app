@@ -1,12 +1,17 @@
 {% extends 'adminlte/lib/_main_sidebar.html' %}
-{% load static %}
+{% load static i18n %}
 
 <!-- Brand Logo -->
 {% block logo %}
-    <a href="/" class="brand-link">
-        <img src="{% static 'webapp/favicon.png' %}" alt="Rasāyu Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        {% block logo_text %}<span class="brand-text font-weight-light">Rasāyu Healthcare</span>{% endblock %}
-    </a>
+<a href="/" class="brand-link">
+    <img src="{% static 'webapp/favicon.png' %}" alt="Rasāyu Logo"
+        class="brand-image img-circle elevation-3" style="opacity: .8">
+    {% block logo_text %}
+    <span class="brand-text font-weight-light">
+        {% trans "Suprajā Abhiyān" %}
+    </span>
+    {% endblock %}
+</a>
 {% endblock %}
 
 {% block user_panel %}

@@ -4,11 +4,10 @@
 
 {% block content %}
 
-{% blocktrans %}
-
-<h1>Terms of Service</h1>
+<h1>{% trans "Terms of Service" %}</h1>
 
 <p>
+    {% blocktrans %}
     The information provided within this site is strictly for the purposes of
     information only and is not a replacement or substitute for professional
     advice, doctors visit or treatment. Treatment for each patient has to be
@@ -18,8 +17,7 @@
     should under no circumstance replace the advice of a healthcare
     Proffesional. You should always consult the Physician to decide best
     treatment for you.
+    {% endblocktrans %}
 </p>
-
-{% endblocktrans %}
 
 {% endblock content %}
