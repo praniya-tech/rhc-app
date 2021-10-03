@@ -6,7 +6,7 @@
 
 <div class="jumbotron">
     <h1 class="display-4">
-        {% blocktrans %} Welcome to Rasāyu Healthcare! {% endblocktrans %}
+        {% trans "Suprajā Abhiyān" %}
     </h1>
     <p class="lead">
         {% blocktrans %}
@@ -24,7 +24,7 @@
     <p class="lead">
         <a class="btn btn-primary btn-lg" href="{% url 'rhcapp_about_rasayu' %}"
             role="button">
-            {% blocktrans %}About Rasāyu{% endblocktrans %}
+            {% trans "About Rasāyu" %}
         </a>
     </p>
 </div>
@@ -34,16 +34,12 @@
         {% comment %} <img class="card-img-top" src="..." alt="Card image cap">
         {% endcomment %}
         <div class="card-header">
-            {% blocktrans %}
-            Track and improve your health
-            {% endblocktrans %}
+            {% trans "Track and improve your health" %}
         </div>
         <div class="card-body">
             {# Removed `.card-title` as otherwise title is not center aligned #}
             <h5> {# class="card-title"> #}
-                {% blocktrans %}
-                Health (svāsthya) assessment
-                {% endblocktrans %}
+                {% trans "Health (svāsthya) assessment" %}
             </h5>
             <p class="card-text">
                 {% blocktrans %}
@@ -56,7 +52,7 @@
             <div>
                 <a class="btn btn-primary"
                     href="{% url 'rhcapp_health_assessment' %}" role="button">
-                    {% blocktrans %}Assess your health{% endblocktrans %}
+                    {% trans "Assess your health" %}
                 </a>
             </div>
         </div>
@@ -66,9 +62,7 @@
                 No follow up reminders yet.<br>
                 {% endblocktrans %}
                 <a href="{% url 'rhcapp_health_assessment' %}">
-                    {% blocktrans %}
-                    Take your first assessment!
-                    {% endblocktrans %}
+                    {% trans "Take your first assessment!" %}
                 </a>
             </small>
         </div>
@@ -77,16 +71,12 @@
         {% comment %} <img class="card-img-top" src="..." alt="Card image cap">
         {% endcomment %}
         <div class="card-header">
-            {% blocktrans %}
-            Seasonal routine and regimen
-            {% endblocktrans %}
+            {% trans "Seasonal routine and regimen" %}
         </div>
         <div class="card-body">
             {# Removed `.card-title` as otherwise title is not center aligned #}
             <h5> {# class="card-title"> #}
-                {% blocktrans %}
-                Prakṛti assessment
-                {% endblocktrans %}
+                {% trans "Prakṛti assessment" %}
             </h5>
             <p class="card-text">
                 {% blocktrans %}
@@ -98,7 +88,7 @@
             <div>
                 <a class="btn btn-primary"
                     href="{% url 'rhcapp_health_assessment' %}" role="button">
-                    {% blocktrans %}Assess your prakṛti{% endblocktrans %}
+                    {% trans "Assess your prakṛti" %}
                 </a>
             </div>
         </div>
@@ -114,16 +104,12 @@
         {% comment %} <img class="card-img-top" src="..." alt="Card image cap">
         {% endcomment %}
         <div class="card-header">
-            {% blocktrans %}
-            Preventive healthcare tips
-            {% endblocktrans %}
+            {% trans "Preventive healthcare tips" %}
         </div>
         <div class="card-body">
             {# Removed `.card-title` as otherwise title is not center aligned #}
             <h5> {# class="card-title"> #}
-                {% blocktrans %}
-                Risk factors assessment
-                {% endblocktrans %}
+                {% trans "Risk factors assessment" %}
             </h5>
             <p class="card-text">
                 {% blocktrans %}
@@ -135,9 +121,7 @@
             <div>
                 <a class="btn btn-primary"
                     href="{% url 'rhcapp_health_assessment' %}" role="button">
-                    {% blocktrans %}
-                    Assess your risk factors
-                    {% endblocktrans %}
+                    {% trans "Assess your risk factors" %}
                 </a>
             </div>
         </div>

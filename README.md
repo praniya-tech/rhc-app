@@ -1,5 +1,8 @@
-# rhc-app
-Rasāyu healthcare app API and web app.
+# Suprajā Abhiyān app
+Live a long, happy and fulfilling life with easy to follow presonalised and
+preventive healthcare recommendations based on Āyurveda.
+
+A public welfare initiative by [Rasāyu](https://app.rasayu.com/about-rasayu).
 
 
 # Development setup
@@ -21,8 +24,8 @@ Set the generated token in `RHCAPP_AUTH_TOKEN` environment variable.
 
 `webapp` overrides this template. Make following changes in this template:
 
-- Hide "messages" and "notifications" icons in the navbar for now.
-  - Add `{% block messages %}` to `<!-- Messages Dropdown Menu -->`.
-  - Add `{% block notifications %}` to `<!-- Notifications Dropdown Menu -->`.
+1. Hide "messages" and "notifications" icons in the navbar for now.
+   1. Add `{% block messages %}` to `<!-- Messages Dropdown Menu -->`.
+   1. Add `{% block notifications %}` to `<!-- Notifications Dropdown Menu -->`.
 
-- Add `{% block nav_bar_left %}` to `<!-- Left navbar links -->`.
+2. Add `{% block nav_bar_left %}` to `<!-- Left navbar links -->`.

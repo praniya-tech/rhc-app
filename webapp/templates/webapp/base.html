@@ -8,14 +8,15 @@
             This app is currently under development and for demonstration
             purpose only.<br>View
             <a href="{% url 'rhcapp_tos' %}">
-                {% blocktrans %}Terms{% endblocktrans %}</a>.
+                {% trans "Terms" %}
+            </a>.
         </h5>
     </center>
 </div>
 {{ block.super }}
 {% endblock body %}
 
-{% block title %}Rasāyu Healthcare{% endblock %}
+{% block title %}Suprajā Abhiyān{% endblock %}
 
 {% block extra_head %}
 <script type="text/javascript"
