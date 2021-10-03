@@ -14,5 +14,72 @@
 </a>
 {% endblock %}
 
+{% block nav_links_ul %}
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview"
+        role="menu" data-accordion="false">
+        {% block nav_links_outer %}
+
+        {% comment %} <li class="nav-header">
+            {% block nav_heading %}
+            {% trans "MAIN NAVIGATION" %}
+            {% endblock %}
+        </li> {% endcomment %}
+
+        {% block nav_links %}
+        {% if user.is_authenticated and user.is_staff %}
+        <li class="nav-item">
+            <a href="/admin" class="nav-link">
+                <i class="nav-icon fas fa-user-ninja"></i>
+                <p>{% trans "Admin" %}</p>
+            </a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+            <a href="/" class="nav-link">
+                <i class="nav-icon fas fa-home"></i>
+                <p>{% trans "Home" %}</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'rhcapp_about' %}" class="nav-link">
+                <i class="nav-icon fas fa-info-circle"></i>
+                <p>{% trans "About" %}</p>
+            </a>
+        </li>
+        <li id="id_assessments_menu" class="nav-item has-tree-view ">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-th-list"></i>
+                <p>{% trans "Assessments" %}</p>
+                <p><i class="right fas fa-angle-left"></i></p>
+            </a>
+            <ul class="nav nav-treeview menu-open">
+                <li class="nav-item">
+                    <a href="{% url 'rhcapp_health_assessment' %}"
+                        class="nav-link">
+                        <i class="nav-icon fas fa-notes-medical"></i>
+                        <p>{% trans "Health assessment" %}</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-notes-medical"></i>
+                        <p>{% trans "Prakṛti assessment" %}</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-notes-medical"></i>
+                        <p>{% trans "Risk assessment" %}</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        {% endblock nav_links %}
+        {% endblock nav_links_outer %}
+    </ul>
+</nav>
+{% endblock nav_links_ul %}
+
 {% block user_panel %}
 {% endblock user_panel %}
