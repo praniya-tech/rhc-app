@@ -12,6 +12,33 @@ from django.urls import reverse
 from project.settings import CRF_API_URL_BASE, CRF_API_HEADERS, DJANGO_LOGGER
 
 
+class HomeView(TemplateView):
+    template_name = 'webapp/index.html'
+
+    def get_context_data(self, **kwargs):
+        try:
+            context = super().get_context_data(**kwargs)
+            if self.request.user.is_authenticated:
+                patient_id = self.request.user.profile.crf_patient_pk
+                response = requests.get(
+                    url=urljoin(
+                        CRF_API_URL_BASE,
+                        'svasthyaquestionnaire/last_assessment_date/'),
+                    headers=CRF_API_HEADERS,
+                    json={'patient_id': patient_id},)
+                response.raise_for_status()
+                last_assessment_date = response.json()['last_assessment_date']
+                context["next_assessment_date"] = None
+                if last_assessment_date:
+                    next_assessment_date = (
+                        datetime.strptime(last_assessment_date, '%d/%m/%Y')
+                        + timedelta(days=30))
+                    context["next_assessment_date"] = next_assessment_date
+            return context
+        except Exception as err:
+            DJANGO_LOGGER.error(str(err), exc_info=err)
+
+
 class SvasthyaQuestionnaireView(TemplateView):
     template_name = 'webapp/svasthya_questionnaire.html'
 
