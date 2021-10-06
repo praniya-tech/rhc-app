@@ -5,7 +5,7 @@ from django.views.generic.base import RedirectView
 from django.contrib.auth.decorators import login_required
 
 from webapp.views import (
-    HomeView, SvasthyaQuestionnaireView, HealthAssessmentView)
+    SvasthyaQuestionnaireView, HealthAssessmentView)
 
 
 urlpatterns = [
@@ -13,7 +13,7 @@ urlpatterns = [
         'favicon.ico',
         RedirectView.as_view(url=staticfiles_storage.url('webapp/favicon.png'))
     ),
-    path('', HomeView.as_view(template_name='webapp/index.html')),
+    path('', TemplateView.as_view(template_name='webapp/index.html')),
     path(
         'about-rasayu',
         TemplateView.as_view(template_name='webapp/about_rasayu.html'),

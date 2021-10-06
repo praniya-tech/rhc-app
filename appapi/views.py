@@ -1,6 +1,7 @@
 import requests
 from urllib.parse import urljoin
 import json
+from datetime import datetime, timedelta
 
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -9,6 +10,7 @@ from django.template import loader
 from rest_framework import viewsets
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 from rest_framework.response import Response
+from rest_framework.decorators import action
 
 from appapi.serializers import (
     SvasthyaQuestionnaireSerializer, SvasthyaQuestionTypeSerializer,
@@ -72,6 +74,36 @@ class SvasthyaQuestionnaireViewSet(viewsets.ViewSet):
                 redirect_to=reverse('rhcapp_health_assessment'))
         else:
             return response.data
+
+    @action(detail=False)
+    def last_assessment_date(self, request, format=None):
+        try:
+            next_assessment_date = None
+            if self.request.user.is_authenticated:
+                patient_id = request.user.profile.crf_patient_pk
+                response = requests.get(
+                    url=urljoin(
+                        CRF_API_URL_BASE,
+                        'svasthyaquestionnaire/last_assessment_date/'),
+                    headers=CRF_API_HEADERS,
+                    json={'patient_id': patient_id})
+                response.raise_for_status()
+                last_assessment_date = response.json()['last_assessment_date']
+                if last_assessment_date:
+                    next_assessment_date = (
+                        datetime.strptime(last_assessment_date, '%d/%m/%Y')
+                        + timedelta(days=30))
+            context = {
+                "next_assessment_date": next_assessment_date,
+            }
+            if request.accepted_renderer.format == 'html':
+                template = loader.get_template(
+                    'appapi/components/last_health_assessment.html')
+                return HttpResponse(template.render(context, request))
+            else:
+                return context
+        except Exception as err:
+            DJANGO_LOGGER.error(str(err), exc_info=err)
 
 
 class PrakritiPropertyTypeViewSet(viewsets.ViewSet):

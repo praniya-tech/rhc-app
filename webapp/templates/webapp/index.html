@@ -1,6 +1,6 @@
 {% extends 'webapp/base.html' %}
 
-{% load i18n %}
+{% load i18n static %}
 
 {% block content %}
 
@@ -66,22 +66,8 @@
             </div>
             <div class="card-footer">
                 <small class="text-muted">
-                    {% if next_assessment_date %}
-                    {% blocktrans %}
-                    Your next assessment is/was due on
-                    {% endblocktrans %}
-                    <b>{{ next_assessment_date|date }}</b>.
-                    <a href="{% url 'rhcapp_svasthya_questionnaire' %}">
-                        {% trans "Take your next assessment." %}
-                    </a>
-                    {% else %}
-                    {% blocktrans %}
-                    No follow up reminders yet.<br>
-                    {% endblocktrans %}
-                    <a href="{% url 'rhcapp_health_assessment' %}">
-                        {% trans "Take your first assessment!" %}
-                    </a>
-                    {% endif %}
+                    <div id="id_last_health_assessment">
+                    </div>
                 </small>
             </div>
         </div>
@@ -162,3 +148,7 @@
     </div>
 </div> <!-- container -->
 {% endblock content %}
+
+{% block extra_js %}
+<script src="{% static 'webapp/js/index.js' %}"></script>
+{% endblock %}
