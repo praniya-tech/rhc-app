@@ -5,14 +5,14 @@
 Your next assessment is/was due on
 {% endblocktrans %}
 <b>{{ next_assessment_date|date }}</b>.
-<a href="{% url 'rhcapp_svasthya_questionnaire' %}">
+<a href="{% url 'webapp:svasthya_questionnaire' %}">
     {% trans "Take your next assessment." %}
 </a>
 {% else %}
 {% blocktrans %}
 No follow up reminders yet.<br>
 {% endblocktrans %}
-<a href="{% url 'rhcapp_health_assessment' %}">
+<a href="{% url 'webapp:health_assessment' %}">
     {% trans "Take your first assessment!" %}
 </a>
 {% endif %}

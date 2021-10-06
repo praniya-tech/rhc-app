@@ -41,9 +41,33 @@ class SvasthyaQuestionnaireViewSet(viewsets.ViewSet):
             data={'patient_id': request.user.profile.crf_patient_pk})
         response.raise_for_status()
         questionnaires_json = response.json()
-        questionnaires = SvasthyaQuestionnaireSerializer(
-            questionnaires_json['results'], many=True).data
-        return Response(questionnaires)
+        # questionnaires = SvasthyaQuestionnaireSerializer(
+        #     questionnaires_json['results'], many=True).data
+        questionnaires = questionnaires_json['results']
+        context = {
+            'svasthya_questionnaires': questionnaires,
+            'next_assessment_date': None,
+        }
+        if len(questionnaires) > 0:
+            last_assessment_date = (
+                questionnaires_json['results'][-1]['date']
+                if len(questionnaires_json['results']) > 0
+                else None
+            )
+            if last_assessment_date:
+                next_assessment_date = (
+                    datetime.strptime(last_assessment_date, '%d/%m/%Y')
+                    + timedelta(days=30))
+                context["next_assessment_date"] = next_assessment_date
+        if request.accepted_renderer.format == 'html':
+            if len(questionnaires) > 0:
+                template = loader.get_template(
+                    'appapi/components/svasthya_questionnaires_card.html')
+                return HttpResponse(template.render(context, request))
+            else:
+                return HttpResponse('')
+        else:
+            return context
 
     def create(self, request, format=None):
         questions = []
@@ -71,7 +95,7 @@ class SvasthyaQuestionnaireViewSet(viewsets.ViewSet):
         if request.accepted_renderer.format == 'html':
             #added_questionnaire = response.json()
             return HttpResponseRedirect(
-                redirect_to=reverse('rhcapp_health_assessment'))
+                redirect_to=reverse('webapp:health_assessment'))
         else:
             return response.data
 

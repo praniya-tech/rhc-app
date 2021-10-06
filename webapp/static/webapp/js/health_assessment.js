@@ -9,19 +9,18 @@ window.addEventListener("load", function () {
             },
         });
 
-        //alert(RHCAPP['CRF_PATIENT_PK']);
-        const CRF_PATIENT_PK = RHCAPP['CRF_PATIENT_PK'];
-
         const sqListXHR = $.ajax({
-            url: 'appapi/svasthyaquestionnaire.json', // + CRF_PATIENT_PK,
+            url: 'appapi/svasthyaquestionnaire.html',
             type: 'GET',
-            dataType: 'json',
+            dataType: 'html',
         });
         sqListXHR.done(function (data, textStatus, jqXHR) {
-            if (Array.isArray(data) && data.length) {
+            if (data) {
                 $('#id_no_questionnaires').hide();
+                $('#id_svasthya_questionnaires_card').append(data);
             } else {
                 $('#id_no_questionnaires').show();
+                $('#id_svasthya_questionnaires_card').append('');
             }
         });
         sqListXHR.fail(function (jqXHR, textStatus, errorThrown) {

@@ -44,33 +44,3 @@ class SvasthyaQuestionnaireView(TemplateView):
             return context
         except Exception as err:
             DJANGO_LOGGER.error(str(err), exc_info=err)
-
-
-class HealthAssessmentView(TemplateView):
-    template_name = 'webapp/health_assessment.html'
-
-    def get_context_data(self, **kwargs):
-        try:
-            patient_id = self.request.user.profile.crf_patient_pk
-            response = requests.get(
-                url=urljoin(CRF_API_URL_BASE, 'svasthyaquestionnaire.json'),
-                headers=CRF_API_HEADERS,
-                json={'patient_id': patient_id},)
-            response.raise_for_status()
-            question_types = response.json()
-            context = super().get_context_data(**kwargs)
-            context["svasthya_questionnaires"] = question_types['results']
-            last_assessment_date = (
-                question_types['results'][-1]['date']
-                if len(question_types['results']) > 0
-                else None
-            )
-            context["next_assessment_date"] = None
-            if last_assessment_date:
-                next_assessment_date = (
-                    datetime.strptime(last_assessment_date, '%d/%m/%Y')
-                    + timedelta(days=30))
-                context["next_assessment_date"] = next_assessment_date
-            return context
-        except Exception as err:
-            DJANGO_LOGGER.error(str(err), exc_info=err)
