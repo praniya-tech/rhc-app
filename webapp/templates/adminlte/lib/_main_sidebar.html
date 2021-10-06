@@ -41,12 +41,6 @@
                 <p>{% trans "Home" %}</p>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="{% url 'rhcapp_about' %}" class="nav-link">
-                <i class="nav-icon fas fa-info-circle"></i>
-                <p>{% trans "About" %}</p>
-            </a>
-        </li>
         <li id="id_assessments_menu" class="nav-item has-tree-view ">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-th-list"></i>
@@ -74,6 +68,13 @@
                     </a>
                 </li>
             </ul>
+        </li>
+        <li class="dropdown-divider"></li>
+        <li class="nav-item">
+            <a href="{% url 'rhcapp_about' %}" class="nav-link">
+                <i class="nav-icon fas fa-info-circle"></i>
+                <p>{% trans "About" %}</p>
+            </a>
         </li>
         {% endblock nav_links %}
         {% endblock nav_links_outer %}

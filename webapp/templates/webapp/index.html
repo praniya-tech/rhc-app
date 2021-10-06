@@ -4,145 +4,161 @@
 
 {% block content %}
 
-<div class="jumbotron">
-    <h1 class="display-4">
-        {% trans "Suprajā Abhiyān" %}
-    </h1>
-    <p class="lead">
-        {% blocktrans %}
-        Live a long, happy and fulfilling life with easy to follow presonalised
-        and preventive healthcare recommendations based on Āyurveda.
-        {% endblocktrans %}
-    </p>
-    <hr class="my-4">
-    <p>
-        {% blocktrans %}
-        A public welfare initiative by <b>Rasāyu</b>, a leader in chronic and
-        critical healthcare for more than 25 years.
-        {% endblocktrans %}
-    </p>
-    <p class="lead">
-        <a class="btn btn-primary btn-lg" href="{% url 'rhcapp_about_rasayu' %}"
-            role="button">
-            {% trans "About Rasāyu" %}
-        </a>
-    </p>
-</div>
+<div class="container-fluid">
+    {% if not request.user.is_authenticated %}
+    <div class="jumbotron">
+        <h1 class="display-4">
+            {% trans "Suprajā Abhiyān" %}
+        </h1>
+        <p class="lead">
+            {% blocktrans %}
+            Live a long, happy and fulfilling life with easy to follow
+            presonalised
+            and preventive healthcare recommendations based on Āyurveda.
+            {% endblocktrans %}
+        </p>
+        <hr class="my-4">
+        <p>
+            {% blocktrans %}
+            A public welfare initiative by <b>Rasāyu</b>, a leader in chronic
+            and
+            critical healthcare for more than 25 years.
+            {% endblocktrans %}
+        </p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg"
+                href="{% url 'rhcapp_about_rasayu' %}" role="button">
+                {% trans "About Rasāyu" %}
+            </a>
+        </p>
+    </div>
+    {% endif %}
 
-<div class="card-deck">
-    <div class="card text-center">
-        {% comment %} <img class="card-img-top" src="..." alt="Card image cap">
-        {% endcomment %}
-        <div class="card-header">
-            {% trans "Track and improve your health" %}
-        </div>
-        <div class="card-body">
-            {# Removed `.card-title` as otherwise title is not center aligned #}
-            <h5> {# class="card-title"> #}
-                {% trans "Health (svāsthya) assessment" %}
-            </h5>
-            <p class="card-text">
-                {% blocktrans %}
-                Are you really healthy? Assess and track your health, follow
-                simple tips and get the most out of your life! Get reminders for
-                periodic assessments to track and maintain a good health or
-                gradually improve it with relevant tips.
-                {% endblocktrans %}
-            </p>
-            <div>
-                <a class="btn btn-primary"
-                    href="{% url 'rhcapp_health_assessment' %}" role="button">
-                    {% trans "Assess your health" %}
-                </a>
+    <div class="card-deck">
+        <div class="card text-center">
+            {% comment %} <img class="card-img-top" src="..."
+                alt="Card image cap">
+            {% endcomment %}
+            <div class="card-header">
+                {% trans "Track and improve your health" %}
+            </div>
+            <div class="card-body">
+                {# Removed `.card-title` as otherwise title is not center aligned #}
+                <h5> {# class="card-title"> #}
+                    {% trans "Health (svāsthya) assessment" %}
+                </h5>
+                <p class="card-text">
+                    {% blocktrans %}
+                    Are you really healthy? Assess and track your health, follow
+                    simple tips and get the most out of your life! Get reminders
+                    for
+                    periodic assessments to track and maintain a good health or
+                    gradually improve it with relevant tips.
+                    {% endblocktrans %}
+                </p>
+                <div>
+                    <a class="btn btn-primary"
+                        href="{% url 'rhcapp_health_assessment' %}"
+                        role="button">
+                        {% trans "Assess your health" %}
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">
+                    {% if next_assessment_date %}
+                    {% blocktrans %}
+                    Your next assessment is/was due on
+                    {% endblocktrans %}
+                    <b>{{ next_assessment_date|date }}</b>.
+                    <a href="{% url 'rhcapp_svasthya_questionnaire' %}">
+                        {% trans "Take your next assessment." %}
+                    </a>
+                    {% else %}
+                    {% blocktrans %}
+                    No follow up reminders yet.<br>
+                    {% endblocktrans %}
+                    <a href="{% url 'rhcapp_health_assessment' %}">
+                        {% trans "Take your first assessment!" %}
+                    </a>
+                    {% endif %}
+                </small>
             </div>
         </div>
-        <div class="card-footer">
-            <small class="text-muted">
-                {% if next_assessment_date %}
-                {% blocktrans %}
-                Your next assessment is/was due on
-                {% endblocktrans %}
-                <b>{{ next_assessment_date|date }}</b>.
-                <a href="{% url 'rhcapp_svasthya_questionnaire' %}">
-                    {% trans "Take your next assessment." %}
-                </a>
-                {% else %}
-                {% blocktrans %}
-                No follow up reminders yet.<br>
-                {% endblocktrans %}
-                <a href="{% url 'rhcapp_health_assessment' %}">
-                    {% trans "Take your first assessment!" %}
-                </a>
-                {% endif %}
-            </small>
-        </div>
-    </div>
-    <div class="card text-center">
-        {% comment %} <img class="card-img-top" src="..." alt="Card image cap">
-        {% endcomment %}
-        <div class="card-header">
-            {% trans "Seasonal routine and regimen" %}
-        </div>
-        <div class="card-body">
-            {# Removed `.card-title` as otherwise title is not center aligned #}
-            <h5> {# class="card-title"> #}
-                {% trans "Prakṛti assessment" %}
-            </h5>
-            <p class="card-text">
-                {% blocktrans %}
-                Get personalised tips and reminders on adjusting your lifestyle
-                as per the changing seasons. Take timely precautions to avoid
-                seasonal ailments. All this personalised as per your prakṛti.
-                {% endblocktrans %}
-            </p>
-            <div>
-                <a class="btn btn-primary"
-                    href="{% url 'rhcapp_health_assessment' %}" role="button">
-                    {% trans "Assess your prakṛti" %}
-                </a>
+        <div class="card text-center">
+            {% comment %} <img class="card-img-top" src="..."
+                alt="Card image cap">
+            {% endcomment %}
+            <div class="card-header">
+                {% trans "Seasonal routine and regimen" %}
+            </div>
+            <div class="card-body">
+                {# Removed `.card-title` as otherwise title is not center aligned #}
+                <h5> {# class="card-title"> #}
+                    {% trans "Prakṛti assessment" %}
+                </h5>
+                <p class="card-text">
+                    {% blocktrans %}
+                    Get personalised tips and reminders on adjusting your
+                    lifestyle
+                    as per the changing seasons. Take timely precautions to
+                    avoid
+                    seasonal ailments. All this personalised as per your
+                    prakṛti.
+                    {% endblocktrans %}
+                </p>
+                <div>
+                    <a class="btn btn-primary"
+                        href="{% url 'rhcapp_health_assessment' %}"
+                        role="button">
+                        {% trans "Assess your prakṛti" %}
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">
+                    {% blocktrans %}
+                    Get seasonal tips and reminders.
+                    {% endblocktrans %}
+                </small>
             </div>
         </div>
-        <div class="card-footer">
-            <small class="text-muted">
-                {% blocktrans %}
-                Get seasonal tips and reminders.
-                {% endblocktrans %}
-            </small>
-        </div>
-    </div>
-    <div class="card text-center">
-        {% comment %} <img class="card-img-top" src="..." alt="Card image cap">
-        {% endcomment %}
-        <div class="card-header">
-            {% trans "Preventive healthcare tips" %}
-        </div>
-        <div class="card-body">
-            {# Removed `.card-title` as otherwise title is not center aligned #}
-            <h5> {# class="card-title"> #}
-                {% trans "Risk factors assessment" %}
-            </h5>
-            <p class="card-text">
-                {% blocktrans %}
-                Get recommendations on preventive healthcare based on various
-                factors such as your dhātu sāratā (quality of body tissues),
-                family medical history, lifestyle, etc.
-                {% endblocktrans %}
-            </p>
-            <div>
-                <a class="btn btn-primary"
-                    href="{% url 'rhcapp_health_assessment' %}" role="button">
-                    {% trans "Assess your risk factors" %}
-                </a>
+        <div class="card text-center">
+            {% comment %} <img class="card-img-top" src="..."
+                alt="Card image cap">
+            {% endcomment %}
+            <div class="card-header">
+                {% trans "Preventive healthcare tips" %}
+            </div>
+            <div class="card-body">
+                {# Removed `.card-title` as otherwise title is not center aligned #}
+                <h5> {# class="card-title"> #}
+                    {% trans "Risk factors assessment" %}
+                </h5>
+                <p class="card-text">
+                    {% blocktrans %}
+                    Get recommendations on preventive healthcare based on
+                    various
+                    factors such as your dhātu sāratā (quality of body tissues),
+                    family medical history, lifestyle, etc.
+                    {% endblocktrans %}
+                </p>
+                <div>
+                    <a class="btn btn-primary"
+                        href="{% url 'rhcapp_health_assessment' %}"
+                        role="button">
+                        {% trans "Assess your risk factors" %}
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">
+                    {% blocktrans %}
+                    Get preventive tips.
+                    {% endblocktrans %}
+                </small>
             </div>
         </div>
-        <div class="card-footer">
-            <small class="text-muted">
-                {% blocktrans %}
-                Get preventive tips.
-                {% endblocktrans %}
-            </small>
-        </div>
     </div>
-</div>
-
-{% endblock %}
+</div> <!-- container -->
+{% endblock content %}
