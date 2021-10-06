@@ -2,15 +2,17 @@ import requests
 from urllib.parse import urljoin
 import json
 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
+from django.template import loader
 
 from rest_framework import viewsets
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 from rest_framework.response import Response
 
 from appapi.serializers import (
-    SvasthyaQuestionnaireSerializer, SvasthyaQuestionTypeSerializer)
+    SvasthyaQuestionnaireSerializer, SvasthyaQuestionTypeSerializer,
+    PrakritiPropertyTypeSerializer)
 from project.settings import CRF_API_URL_BASE, CRF_API_HEADERS, DJANGO_LOGGER
 
 
@@ -70,3 +72,25 @@ class SvasthyaQuestionnaireViewSet(viewsets.ViewSet):
                 redirect_to=reverse('rhcapp_health_assessment'))
         else:
             return response.data
+
+
+class PrakritiPropertyTypeViewSet(viewsets.ViewSet):
+    renderer_classes = (JSONRenderer, TemplateHTMLRenderer)
+
+    def list(self, request, format=None):
+        response = requests.get(
+            url=urljoin(CRF_API_URL_BASE, 'prakritipropertytype.json'),
+            headers=CRF_API_HEADERS)
+        response.raise_for_status()
+        propertytypes_json = response.json()
+        propertytypes = PrakritiPropertyTypeSerializer(
+            propertytypes_json, many=True).data
+        if request.accepted_renderer.format == 'html':
+            context = {
+                'property_types': propertytypes,
+            }
+            template = loader.get_template(
+                'appapi/components/prakriti_questionnaire_form.html')
+            return HttpResponse(template.render(context, request))
+        else:
+            return Response(propertytypes)

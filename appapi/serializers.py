@@ -17,3 +17,9 @@ class SvasthyaQuestionnaireSerializer(serializers.Serializer):
     date = serializers.DateField()
     score = serializers.IntegerField()
     questions = SvasthyaQuestionSerializer(many=True)
+
+
+class PrakritiPropertyTypeSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    category = serializers.CharField()
+    order = serializers.IntegerField()

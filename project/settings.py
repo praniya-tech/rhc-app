@@ -64,6 +64,7 @@ if DJANGO_HOST == "production":
 
 INSTALLED_APPS = [
     'webapp',  # keep before `adminlte3`, `allauth`
+    'appapi',
 
     # https://github.com/d-demirci/django-adminlte3
     # General use templates & template tags (should appear first)

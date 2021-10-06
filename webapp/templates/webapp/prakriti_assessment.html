@@ -9,9 +9,19 @@
         <div class="card text-center" style="min-width:50rem">
             <div class="card-body">
                 <h1>{% trans "Prakṛti questionnaire" %}</h1>
+                <form method="post" action="appapi/prakritiquestionnaire/">
+                    {# action="{% url 'submit_svasthya_questionnaire' %}"> #}
+                    {% csrf_token %}
+                    <div id="id_property_types">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
 {% endblock content %}
+
+{% block extra_js %}
+<script src="{% static 'webapp/js/prakriti_assessment.js' %}"></script>
+{% endblock %}

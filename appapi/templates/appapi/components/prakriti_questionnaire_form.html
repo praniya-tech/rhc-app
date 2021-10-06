@@ -1,0 +1,21 @@
+{% load i18n %}
+
+{% for pt in property_types %}
+<div class="form-group row justify-content-between">
+    <input type="hidden" readonly value={{ pt.order }} name="p-{{ pt.order }}">
+    </input>
+    <label for="id_response_{{ forloop.counter }}"
+        class="col-auto col-form-label">
+        {{ forloop.counter }}.
+        {{ pt.name }}
+    </label>
+    <div class="col-auto">
+        <select class="form-control" required
+            id="id_response_{{ forloop.counter }}" name="o-{{ pt.order }}">
+            <option value="">
+                {% trans "--Select a response--" %}
+            </option>
+        </select>
+    </div>
+</div>
+{% endfor %}
