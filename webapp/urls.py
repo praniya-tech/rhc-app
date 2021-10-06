@@ -43,5 +43,11 @@ urlpatterns = [
         login_required(
             SvasthyaQuestionnaireView.as_view(
                 template_name='webapp/svasthya_questionnaire.html')),
-        name='rhcapp_svasthya_questionnaire')
+        name='rhcapp_svasthya_questionnaire'),
+    path(
+        'prakriti-assessment',
+        login_required(
+            TemplateView.as_view(
+                template_name='webapp/prakriti_assessment.html')),
+        name='rhcapp_prakriti_assessment'),
 ]
