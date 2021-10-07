@@ -63,8 +63,10 @@ class SvasthyaQuestionnaireViewSet(viewsets.ViewSet):
                 'next_assessment_date': None,
             }
             if len(questionnaires) > 0:
+                # questionnaires are sorted descending by date, so first
+                # questionnaire is the latest.
                 last_assessment_date = (
-                    questionnaires_json['results'][-1]['date']
+                    questionnaires_json['results'][0]['date']
                     if len(questionnaires_json['results']) > 0
                     else None
                 )
