@@ -18,7 +18,7 @@ window.addEventListener("load", function () {
             $('#id_property_types').append(data);
         });
         pqFormXHR.fail(function (jqXHR, textStatus, errorThrown) {
-            alert(textStatus);
+            $('#id_ajax_error').show();
         });
 
     }); // `ready()`

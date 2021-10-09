@@ -1,0 +1,18 @@
+{% extends 'adminlte/base.html' %}
+
+{% load static i18n %}
+
+{% block body %}
+<div class="alert alert-danger" role="alert">
+    <center>
+        <h5>
+            This app is currently under development and for demonstration
+            purpose only.<br>View
+            <a href="{% url 'webapp:tos' %}">
+                {% trans "Terms" %}
+            </a>.
+        </h5>
+    </center>
+</div>
+{{ block.super }}
+{% endblock body %}

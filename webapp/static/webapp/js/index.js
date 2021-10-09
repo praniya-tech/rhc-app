@@ -18,7 +18,9 @@ window.addEventListener("load", function () {
             $('#id_last_health_assessment').append(data);
         });
         lastAssessmentDateXHR.fail(function (jqXHR, textStatus, errorThrown) {
-            alert(textStatus);
+            $('#id_ajax_error').show();
+            // $('#id_ajax_error_message').text(
+            //     `${textStatus.toUpperCase()}: ${errorThrown}.`);
         });
 
     }); // `ready()`

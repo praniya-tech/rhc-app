@@ -24,7 +24,7 @@ window.addEventListener("load", function () {
             }
         });
         sqListXHR.fail(function (jqXHR, textStatus, errorThrown) {
-            alert(textStatus);
+            $('#id_ajax_error').show();
         });
 
     }); // `ready()`

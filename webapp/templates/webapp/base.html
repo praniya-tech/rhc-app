@@ -1,22 +1,22 @@
 {% extends 'adminlte/base.html' %}
 {% load static i18n %}
 
-{% block body %}
-<div class="alert alert-danger" role="alert">
-    <center>
-        <h5>
-            This app is currently under development and for demonstration
-            purpose only.<br>View
-            <a href="{% url 'webapp:tos' %}">
-                {% trans "Terms" %}
-            </a>.
-        </h5>
-    </center>
-</div>
-{{ block.super }}
-{% endblock body %}
-
 {% block title %}Suprajā Abhiyān{% endblock %}
+
+{% block messages %}
+{{ block.super }}
+<div id="id_ajax_error" class="alert alert-danger alert-dismissible"
+    style="display: none">
+    <button type="button" class="close" data-dismiss="alert"
+        aria-hidden="true">&times;</button>
+    <span>
+        <span id="id_ajax_error_message"></span>
+        <span id="id_ajax_default_error_message">
+            {% trans "Sorry, something went wrong. Please try again later." %}
+        </span>
+    </span>
+</div>
+{% endblock messages %}
 
 {% block extra_head %}
 <script type="text/javascript"

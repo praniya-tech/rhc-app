@@ -28,7 +28,7 @@ window.addEventListener("load", function () {
             }
         });
         sqXHR.fail(function (jqXHR, textStatus, errorThrown) {
-            alert(textStatus);
+            $('#id_ajax_error').show();
         });
 
     }); // `ready()`
