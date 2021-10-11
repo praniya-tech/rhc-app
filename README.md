@@ -1,8 +1,10 @@
 # Suprajā Abhiyān app
-Live a long, happy and fulfilling life with easy to follow presonalised and
-preventive healthcare recommendations based on Āyurveda.
+An Ayurvedic healthcare app focussed on prevention and management of chronic and critical non-communicable diseases (NCDs).
 
 A public welfare initiative by [Rasāyu](https://app.rasayu.com/about-rasayu).
+
+Currently a web app is under development with plan to develop mobile apps.
+Web app demo: https://app.rasayu.com.
 
 
 # Development setup
