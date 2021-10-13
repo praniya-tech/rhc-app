@@ -15,9 +15,10 @@ window.addEventListener("load", function () {
             dataType: 'html',
         });
         pqFormXHR.done(function (data, textStatus, jqXHR) {
-            $('#id_property_types').append(data);
+            $('#id_property_types').empty().append(data);
         });
         pqFormXHR.fail(function (jqXHR, textStatus, errorThrown) {
+            $('#id_property_types').empty();
             $('#id_ajax_error').show();
         });
 

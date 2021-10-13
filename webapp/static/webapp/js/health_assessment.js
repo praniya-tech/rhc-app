@@ -17,10 +17,10 @@ window.addEventListener("load", function () {
         sqListXHR.done(function (data, textStatus, jqXHR) {
             if (data) {
                 $('#id_no_questionnaires').hide();
-                $('#id_svasthya_questionnaires_card').append(data);
+                $('#id_svasthya_questionnaires_card').empty().append(data);
             } else {
                 $('#id_no_questionnaires').show();
-                $('#id_svasthya_questionnaires_card').append('');
+                $('#id_svasthya_questionnaires_card').empty();
             }
         });
         sqListXHR.fail(function (jqXHR, textStatus, errorThrown) {

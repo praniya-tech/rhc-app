@@ -22,9 +22,9 @@ window.addEventListener("load", function () {
         });
         sqXHR.done(function (data, textStatus, jqXHR) {
             if (data) {
-                $('#id_svasthya_questionnaire').append(data);
+                $('#id_svasthya_questionnaire').empty().append(data);
             } else {
-                $('#id_svasthya_questionnaire').append('');
+                $('#id_svasthya_questionnaire').empty();
             }
         });
         sqXHR.fail(function (jqXHR, textStatus, errorThrown) {
