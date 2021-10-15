@@ -2,7 +2,7 @@
 
 {% if next_assessment_date %}
 {% blocktrans %}
-Your next assessment is/was due on
+Your next wellness assessment is/was due on
 {% endblocktrans %}
 <b>{{ next_assessment_date|date }}</b>.
 <a href="{% url 'webapp:svasthya_questionnaire' %}">
@@ -12,7 +12,7 @@ Your next assessment is/was due on
 {% blocktrans %}
 No follow up reminders yet.<br>
 {% endblocktrans %}
-<a href="{% url 'webapp:health_assessment' %}">
+<a href="{% url 'webapp:wellness_assessment' %}">
     {% trans "Take your first assessment!" %}
 </a>
 {% endif %}

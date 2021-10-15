@@ -87,7 +87,7 @@ class SvasthyaQuestionnaireViewSet(viewsets.ViewSet):
             return context
 
     @wrap_api_redirect(
-        redirect_to=reverse_lazy('webapp:health_assessment'),
+        redirect_to=reverse_lazy('webapp:wellness_assessment'),
         error_message=format_html(_(
             'Sorry, failed to save the questionnaire. Please try again later.'
             ' Please <a href=mailto:app.support@rasayu.com>contact us</a> at'
@@ -142,7 +142,7 @@ class SvasthyaQuestionnaireViewSet(viewsets.ViewSet):
             return context
 
     @action(detail=False)
-    @wrap_api(template_name='appapi/components/last_health_assessment.html')
+    @wrap_api(template_name='appapi/components/last_wellness_assessment.html')
     def last_assessment_date(self, request, format=None, template_name=None):
         next_assessment_date = None
         if self.request.user.is_authenticated:

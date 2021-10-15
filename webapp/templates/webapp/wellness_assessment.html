@@ -6,7 +6,7 @@
 
 <div class="container-fluid">
 
-    <h1 class="text-center">{% trans "Health assessment" %}</h1>
+    <h1 class="text-center">{% trans "Wellness assessment" %}</h1>
 
     <div id="id_no_questionnaires" style="display: none;">
         <p class="lead">
@@ -27,7 +27,7 @@
         <div class="card text-center" style="width:50rem;min-width:50rem;">
             <div class="card-body">
 
-                <h2>{% trans "Health tips" %}</h2>
+                <h2>{% trans "Wellness tips" %}</h2>
                 <table class="table text-left">
                     <thead>
                         <tr>
@@ -51,9 +51,8 @@
                                     <li>Try reducing your food intake by 20%.
                                     </li>
                                     <li>Drink water in proportion to your
-                                        thirst:
-                                        Avoid
-                                        drinking excess water.</li>
+                                        thirst: Avoid drinking excess water.
+                                    </li>
                                     <li>Avoid sleeping in afternoon, especially
                                         immediately after lunch.
                                     </li>
@@ -69,8 +68,7 @@
                             <th scope="row">
                                 {% blocktrans %}
                                 What is your level of enthusiasm on waking up in
-                                the
-                                morning?
+                                the morning?
                                 {% endblocktrans %}
                             </th>
                             <td>
@@ -78,9 +76,7 @@
                                 <ol>
                                     <li>Avoid eating late dinners.</li>
                                     <li>Proportionately reduce food intake as
-                                        per
-                                        delay
-                                        in dinner time.</li>
+                                        per delay in dinner time.</li>
                                     <li>Sleep early and wake up early to feel
                                         enthusiastic.</li>
                                 </ol>
@@ -97,8 +93,7 @@
                                 {% blocktrans %}
                                 <ol>
                                     <li>Avoid grazing during the day to have
-                                        good
-                                        appetite during meals.</li>
+                                        good appetite during meals.</li>
                                     <li>Avoid having water before meals.</li>
                                     <li>Good exercise helps increase appetite.
                                     </li>
@@ -138,19 +133,14 @@
                                 {% blocktrans %}
                                 <ol>
                                     <li>Regular exercises are necessary for
-                                        regular
-                                        bowel movement.</li>
+                                        regular bowel movement.</li>
                                     <li>Stress has adverse effect on bowel
-                                        movement.
-                                        Meditation and pranayam help relieve
-                                        stress.
+                                        movement. Meditation and pranayam help
+                                        relieve stress.
                                     </li>
                                     <li>Have half glass of warm water with 1
-                                        teaspoon
-                                        desi ghee in the night to have good
-                                        bowel
-                                        next
-                                        day.
+                                        teaspoon desi ghee in the night to have
+                                        good bowel next day.
                                     </li>
                                 </ol>
                                 {% endblocktrans %}
@@ -168,8 +158,7 @@
                                     <li>Regular pranayam in the night.</li>
                                     <li>Prayers/ meditation in the night.</li>
                                     <li>Avoid indulging in any stimulating
-                                        activity
-                                        before sleep.</li>
+                                        activity before sleep.</li>
                                 </ol>
                                 {% endblocktrans %}
                             </td>
@@ -226,5 +215,5 @@
         CRF_PATIENT_PK: "{{ user.profile.crf_patient_pk }}",
     };
 </script>
-<script src="{% static 'webapp/js/health_assessment.js' %}"></script>
+<script src="{% static 'webapp/js/wellness_assessment.js' %}"></script>
 {% endblock %}

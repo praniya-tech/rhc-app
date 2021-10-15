@@ -27,11 +27,11 @@ urlpatterns = [
         TemplateView.as_view(template_name='webapp/tos.html'),
         name='tos'),
     path(
-        'health-assessment',
+        'wellness-assessment',
         login_required(
             TemplateView.as_view(
-                template_name='webapp/health_assessment.html')),
-        name='health_assessment'),
+                template_name='webapp/wellness_assessment.html')),
+        name='wellness_assessment'),
     path(
         'svasthya-questionnaire',
         login_required(

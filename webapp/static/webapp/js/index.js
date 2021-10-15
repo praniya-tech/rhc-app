@@ -15,10 +15,10 @@ window.addEventListener("load", function () {
             dataType: 'html',
         });
         lastAssessmentDateXHR.done(function (data, textStatus, jqXHR) {
-            $('#id_last_health_assessment').empty().append(data);
+            $('#id_last_wellness_assessment').empty().append(data);
         });
         lastAssessmentDateXHR.fail(function (jqXHR, textStatus, errorThrown) {
-            $('#id_last_health_assessment').empty();
+            $('#id_last_wellness_assessment').empty();
             $('#id_ajax_error').show();
             // $('#id_ajax_error_message').text(
             //     `${textStatus.toUpperCase()}: ${errorThrown}.`);

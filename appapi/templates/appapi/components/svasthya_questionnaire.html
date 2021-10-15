@@ -4,7 +4,7 @@
 <div class="d-flex justify-content-center">
     <div class="card text-center" style="min-width:50rem">
         <div class="card-body">
-            <h2>{% trans "Svāsthya questionnaire" %}</h2>
+            <h2>{% trans "Wellness (svāsthya) questionnaire" %}</h2>
             <span>
                 <h2>
                     {% trans "Date:" %} {{ questionnaire.date }}.
@@ -32,7 +32,7 @@
             </table>
             <hr>
             <a type="button" class="btn btn-primary"
-                href="{% url 'webapp:health_assessment' %}">
+                href="{% url 'webapp:wellness_assessment' %}">
                 {% trans 'Back' %}
             </a>
         </div>
@@ -44,7 +44,7 @@
 <div class="d-flex justify-content-center">
     <div class="card text-center" style="min-width:50rem">
         <div class="card-body">
-            <h2>{% trans "Svāsthya questionnaire"%}</h2>
+            <h2>{% trans "Wellness (svāsthya) questionnaire"%}</h2>
             <form method="post" action="appapi/svasthyaquestionnaire/">
                 {# action="{% url 'submit_svasthya_questionnaire' %}"> #}
                 {% csrf_token %}
@@ -89,7 +89,7 @@
                     {% trans 'Submit' %}
                 </button>
                 <a type="button" class="btn btn-secondary"
-                    href="{% url 'webapp:health_assessment' %}">
+                    href="{% url 'webapp:wellness_assessment' %}">
                     {% trans 'Back' %}
                 </a>
             </form>

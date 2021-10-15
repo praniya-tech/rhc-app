@@ -40,33 +40,32 @@
                 alt="Card image cap">
             {% endcomment %}
             <div class="card-header">
-                {% trans "Track and improve your health" %}
+                {% trans "Track and improve your wellness" %}
             </div>
             <div class="card-body">
                 {# Removed `.card-title` as otherwise title is not center aligned #}
                 <h5> {# class="card-title"> #}
-                    {% trans "Health (svāsthya) assessment" %}
+                    {% trans "Wellness (svāsthya) assessment" %}
                 </h5>
                 <p class="card-text">
                     {% blocktrans %}
                     Are you really healthy? Assess and track your health, follow
                     simple tips and get the most out of your life! Get reminders
-                    for
-                    periodic assessments to track and maintain a good health or
-                    gradually improve it with relevant tips.
+                    for periodic assessments to track and maintain a good health
+                    or gradually improve it with relevant tips.
                     {% endblocktrans %}
                 </p>
                 <div>
                     <a class="btn btn-primary"
-                        href="{% url 'webapp:health_assessment' %}"
+                        href="{% url 'webapp:wellness_assessment' %}"
                         role="button">
-                        {% trans "Assess your health" %}
+                        {% trans "Assess your wellness" %}
                     </a>
                 </div>
             </div>
             <div class="card-footer">
                 <small class="text-muted">
-                    <div id="id_last_health_assessment">
+                    <div id="id_last_wellness_assessment">
                         <i class="fa fa-spinner fa-spin"></i>
                     </div>
                 </small>
@@ -132,7 +131,7 @@
                 </p>
                 <div>
                     <a class="btn btn-primary"
-                        href="{% url 'webapp:health_assessment' %}"
+                        href="{% url 'webapp:wellness_assessment' %}"
                         role="button">
                         {% trans "Assess your risk factors" %}
                     </a>
