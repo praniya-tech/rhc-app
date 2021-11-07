@@ -10,15 +10,16 @@ Web app demo link: https://app.rasayu.com.
 
 Steps for the demo developed so far:
 
-1. Create a user account.
-   1. Go to the [demo site](https://app.rasayu.com).
-   2. Click on the "Sign in" icon at the top right corner.
-   3. Click on the "sign up" link in the sign in page that is displayed.
-   4. Enter your email, username and password and click "Sign up".
-   5. An email will be sent to the specified email ID for verification.
-   6. Open the email and click on the verification link.
-   7. Click on the "Sign in" icon again and sign in with your email and password.
-2. Take your wellness assessment.
+1. Go to the [demo site](https://app.rasayu.com).
+2. Click on the "Sign in" icon at the top right corner.
+3. Sign in with the demo account credentials given, or create your user account
+   as follows:
+   1. Click on the "sign up" link in the sign in page that is displayed.
+   2. Enter your email, username and password and click "Sign up".
+   3. An email will be sent to the specified email ID for verification.
+   4. Open the email and click on the verification link.
+   5. Click on the "Sign in" icon again and sign in with your email and password.
+4. Take your wellness assessment.
    1. On the welcome page, click on the "Assess your wellness" button.
    2. Click on the "Take your first assessment" link.
    3. Answer the wellness questionnaire and click "Submit".

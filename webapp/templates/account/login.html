@@ -40,10 +40,14 @@
 
             {% else %}
 
-            <p>
+            <p class="text-left">
                 {% blocktrans %}
-                If you have not created an account yet, then please
-                <a href="{{ signup_url }}">sign up</a> first.
+                If you have not created an account yet, then please either
+                <a href="{{ signup_url }}">sign up</a> first or sign in with
+                following demo account credentials:<br>
+                Demo username: demo@rasayu.com<br>
+                Password: demopass<br>
+                <b>Note that demo account data is periodically deleted.</b>
                 {% endblocktrans %}
             </p>
 
