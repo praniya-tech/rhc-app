@@ -1,6 +1,13 @@
 {% load i18n %}
 
 {% if property_options_zip %}
+<p>
+    {% blocktrans %}
+    Answer the following questionnaire to know about your prakṛti. Based on your
+    prakṛti, we can give you personalized recommendations for following a better
+    daily and seasonal routine and regimen (dinacaryā and ṛtucaryā).
+    {% endblocktrans %}
+</p>
 <form method="post" action="appapi/prakritiquestionnaire/">
     {% csrf_token %}
     {% for pt, options in property_options_zip %}
@@ -26,9 +33,9 @@
     </div>
     <hr>
     {% endfor %}
-    {% comment %} <button class="btn btn-primary" type="submit">
+    <button class="btn btn-primary" type="submit">
         {% trans 'Submit' %}
-    </button> {% endcomment %}
+    </button>
     <a type="button" class="btn btn-secondary" href="{% url 'webapp:index' %}">
         {% trans 'Back' %}
     </a>

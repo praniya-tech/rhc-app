@@ -91,8 +91,8 @@ class SvasthyaQuestionnaireViewSet(viewsets.ViewSet):
         redirect_to=reverse_lazy('webapp:wellness_assessment'),
         error_message=format_html(_(
             'Sorry, failed to save the questionnaire. Please try again later.'
-            ' Please <a href=mailto:app.support@rasayu.com>contact us</a> at'
-            ' app[dot]support[at]rasayu[dot]com if the problem persists.'
+            ' Please <a href=mailto:app.support@rasayu.com>contact us</a> if'
+            ' the problem persists.'
         )))
     def create(self, request, format=None, redirect_to=None):
         questions = []
@@ -236,31 +236,31 @@ class PrakritiQuestionnaireViewSet(viewsets.ViewSet):
             return Response(context)
 
     @wrap_api_redirect(
-        # redirect_to=reverse_lazy('webapp:wellness_assessment'),
+        redirect_to=reverse_lazy('webapp:prakriti_assessment'),
         error_message=format_html(_(
             'Sorry, failed to save the questionnaire. Please try again later.'
-            ' Please <a href=mailto:app.support@rasayu.com>contact us</a> at'
-            ' app[dot]support[at]rasayu[dot]com if the problem persists.'
+            ' Please <a href=mailto:app.support@rasayu.com>contact us</a> if'
+            ' the problem persists.'
         )))
     def create(self, request, format=None, redirect_to=None):
-        questions = []
-        question_orders = [
-            v for k, v in request.data.items() if k.startswith('q')]
-        responses = [
-            v for k, v in request.data.items() if k.startswith('r')]
-        for qo, r in zip(question_orders, responses):
-            questions.append({
-                'question': {
-                    'order': int(qo)
+        property_options = []
+        properties = [
+            v for k, v in request.data.items() if k.startswith('p')]
+        options = [
+            v for k, v in request.data.items() if k.startswith('o')]
+        for p, o in zip(properties, options):
+            property_options.append({
+                'property': {
+                    'order': int(p),
                 },
-                'response': int(r)
+                'option_id': int(o),
             })
         questionnaire = {
             'patient_id': request.user.profile.crf_patient_pk,
-            'questions': questions,
+            'prakṛti_properties': property_options,
         }
         response = requests.post(
-            url=urljoin(CRF_API_URL_BASE, 'svasthyaquestionnaire.json'),
+            url=urljoin(CRF_API_URL_BASE, 'prakritiquestionnaire.json'),
             headers=CRF_API_HEADERS,
             json=questionnaire)
         response.raise_for_status()
@@ -269,7 +269,7 @@ class PrakritiQuestionnaireViewSet(viewsets.ViewSet):
             # added_questionnaire = response.json()
             return HttpResponseRedirect(redirect_to=redirect_to)
         else:
-            return response.data
+            return response
 
     @wrap_api(template_name='appapi/components/prakriti_questionnaire.html')
     def retrieve(self, request, pk=None, format=None, template_name=None):

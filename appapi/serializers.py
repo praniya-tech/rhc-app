@@ -41,6 +41,7 @@ class PrakritiOptionTypeSerializer(serializers.Serializer):
         ('k', 'Kaphaja')
     )
 
+    id = serializers.IntegerField()
     name = serializers.CharField()
     property_id = serializers.IntegerField()
     prakṛti_type = serializers.ChoiceField(choices=PRAKRITI_PROPERTY_CHOICES)
