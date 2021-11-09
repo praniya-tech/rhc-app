@@ -1,21 +1,36 @@
 {% load i18n %}
 
-{% for pt in property_types %}
-<div class="form-group row justify-content-between">
-    <input type="hidden" readonly value={{ pt.order }} name="p-{{ pt.order }}">
-    </input>
-    <label for="id_response_{{ forloop.counter }}"
-        class="col-auto col-form-label">
-        {{ forloop.counter }}.
-        {{ pt.name }}
-    </label>
-    <div class="col-auto">
-        <select class="form-control" required
-            id="id_response_{{ forloop.counter }}" name="o-{{ pt.order }}">
-            <option value="">
-                {% trans "--Select a response--" %}
-            </option>
-        </select>
+{% if property_options_zip %}
+<form method="post" action="appapi/prakritiquestionnaire/">
+    {% csrf_token %}
+    {% for pt, options in property_options_zip %}
+    <div class="form-group row justify-content-center">
+        <input type="hidden" readonly value={{ pt.order }}
+            name="p-{{ pt.order }}">
+        </input>
+        <label for="id_response_{{ forloop.counter }}"
+            class="col-md-6 col-form-label text-left">
+            {{ forloop.counter }}.
+            {{ pt.name }}
+        </label>
+        <div class="col-md-4 text-left">
+            <select class="form-control" required
+                id="id_response_{{ forloop.counter }}" name="o-{{ pt.order }}">
+                {% for option in options %}
+                <option value="{{ option.id }}">
+                    {{ option.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
     </div>
-</div>
-{% endfor %}
+    <hr>
+    {% endfor %}
+    {% comment %} <button class="btn btn-primary" type="submit">
+        {% trans 'Submit' %}
+    </button> {% endcomment %}
+    <a type="button" class="btn btn-secondary" href="{% url 'webapp:index' %}">
+        {% trans 'Back' %}
+    </a>
+</form>
+{% endif %}

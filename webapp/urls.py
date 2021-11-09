@@ -13,7 +13,9 @@ urlpatterns = [
         'favicon.ico',
         RedirectView.as_view(url=staticfiles_storage.url('webapp/favicon.png'))
     ),
-    path('', TemplateView.as_view(template_name='webapp/index.html')),
+    path(
+        '', TemplateView.as_view(template_name='webapp/index.html'),
+        name='index'),
     path(
         'about-rasayu',
         TemplateView.as_view(template_name='webapp/about_rasayu.html'),

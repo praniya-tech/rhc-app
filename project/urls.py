@@ -39,6 +39,14 @@ appapi_router.register(
     prefix=r'prakritipropertytype',
     basename='prakritipropertytype',
     viewset=appapi_views.PrakritiPropertyTypeViewSet)
+appapi_router.register(
+    prefix=r'prakritioptiontype',
+    basename='prakritioptiontype',
+    viewset=appapi_views.PrakritiOptionTypeViewSet)
+appapi_router.register(
+    prefix=r'prakritiquestionnaire',
+    basename='prakritiquestionnaire',
+    viewset=appapi_views.PrakritiQuestionnaireViewSet)
 
 
 urlpatterns = [
