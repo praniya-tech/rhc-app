@@ -10,7 +10,7 @@ from django.template import loader
 from django.utils.translation import gettext as _
 from django.utils.html import format_html
 
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -207,15 +207,15 @@ class PrakritiOptionTypeViewSet(viewsets.ViewSet):
 
 
 class PrakritiQuestionnaireViewSet(viewsets.ViewSet):
+    permission_classes = [permissions.IsAuthenticated, ]
     renderer_classes = (JSONRenderer, TemplateHTMLRenderer)
 
-    @wrap_api()
+    @wrap_api(
+        template_name='appapi/components/prakriti_questionnaire_form.html')
     def list(self, request, format=None, template_name=None):
         """
         A patient can have at most one prakriti assessment. So, the
         questionnaire list can contain either 0 or 1 item.
-
-        Currently the HTML format is not handled.
         """
         response = requests.get(
             url=urljoin(CRF_API_URL_BASE, 'prakritiquestionnaire.json'),
@@ -223,15 +223,19 @@ class PrakritiQuestionnaireViewSet(viewsets.ViewSet):
             data={'patient_id': request.user.profile.crf_patient_pk})
         response.raise_for_status()
         questionnaires_json = response.json()
-        # questionnaires = SvasthyaQuestionnaireSerializer(
+        # questionnaires = PrakritiQuestionnaireSerializer(
         #     questionnaires_json['results'], many=True).data
         questionnaires = questionnaires_json['results']
         context = {
-            'prakriti_questionnaires': questionnaires,
+            'questionnaire': (
+                questionnaires[0] if questionnaires else None),
         }
         if request.accepted_renderer.format == 'html':
-            # Currently not handled
-            pass
+            if len(questionnaires) > 0:
+                template = loader.get_template(template_name)
+                return HttpResponse(template.render(context, request))
+            else:
+                return HttpResponse('')
         else:
             return Response(context)
 

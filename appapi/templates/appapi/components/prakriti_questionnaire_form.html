@@ -1,6 +1,7 @@
 {% load i18n %}
 
 {% if property_options_zip %}
+
 <p>
     {% blocktrans %}
     Answer the following questionnaire to know about your prakṛti. Based on your
@@ -40,4 +41,40 @@
         {% trans 'Back' %}
     </a>
 </form>
+
+{% elif questionnaire %}
+
+<p>
+    {% blocktrans with date=questionnaire.date %}
+    You answered the Prakṛti questionnaire on <b>{{ date }}</b>. As per
+    your responses, your Prakṛti impression is:
+    {% endblocktrans %}
+</p>
+<h4>
+    <b>{% trans "Vatika score:" %}</b> {{ questionnaire.vatika_score }},
+    <b>{% trans "Paittika score:" %}</b> {{ questionnaire.paittika_score }},
+    <b>{% trans "Kaphaja score:" %}</b> {{ questionnaire.kaphaja_score }}.
+</h4>
+<div>
+    <table class="table table-sm text-left">
+        <thead>
+            <tr>
+                <th scope="col">Property</th>
+                <th scope="col">Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for po in questionnaire.prakṛti_properties %}
+            <tr>
+                <th scope="row">{{ po.property.name }}</th>
+                <td>{{ po.option.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<a type="button" class="btn btn-secondary" href="{% url 'webapp:index' %}">
+    {% trans 'Back' %}
+</a>
+
 {% endif %}

@@ -10,13 +10,13 @@ window.addEventListener("load", function () {
         });
 
         const pqFormXHR = $.ajax({
-            url: 'appapi/prakritiquestionnaire.json',
+            url: 'appapi/prakritiquestionnaire.html',
             type: 'GET',
-            dataType: 'json',
+            dataType: 'html',
         });
-        pqFormXHR.done(function (questionnaires, textStatus, jqXHR) {
-            if (questionnaires.length > 0) {
-                $('#id_property_types').empty().append(data);
+        pqFormXHR.done(function (html, textStatus, jqXHR) {
+            if (html) {
+                $('#id_property_types').empty().append(html);
             } else {
                 showNewPrakritiQuestionnaire();
             }
