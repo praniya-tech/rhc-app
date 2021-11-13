@@ -50,12 +50,23 @@
     your responses, your Prakṛti impression is:
     {% endblocktrans %}
 </p>
-<h4>
-    <b>{% trans "Vatika score:" %}</b> {{ questionnaire.vatika_score }},
-    <b>{% trans "Paittika score:" %}</b> {{ questionnaire.paittika_score }},
-    <b>{% trans "Kaphaja score:" %}</b> {{ questionnaire.kaphaja_score }}.
-</h4>
+<h5>
+    <b>
+        <span>
+            {% for pt, score in questionnaire.prakriti_impression %}
+            {{ pt }}: {{ score }} {% if not forloop.last %};{% endif %}
+            {% endfor %}
+        </span>
+    </b>
+</h5>
+
+<div id="id_ritucharya">
+    <i class="fa fa-spinner fa-spin fa-4x"></i>
+</div>
+
+
 <div>
+    <caption>{% trans "Answered questionnaire" %}</caption>
     <table class="table table-sm text-left">
         <thead>
             <tr>

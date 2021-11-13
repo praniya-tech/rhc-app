@@ -1,7 +1,7 @@
 import requests
 from urllib.parse import urljoin
 import json
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from itertools import groupby
 
 from django.http import HttpResponseRedirect, HttpResponse
@@ -13,7 +13,9 @@ from django.utils.html import format_html
 from rest_framework import viewsets, permissions
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 from rest_framework.response import Response
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view
+
+from convertdate import indian_civil
 
 from appapi.serializers import (
     SvasthyaQuestionnaireSerializer, SvasthyaQuestionTypeSerializer,
@@ -23,10 +25,35 @@ from appapi.decorators import wrap_api, wrap_api_redirect
 from project.settings import CRF_API_URL_BASE, CRF_API_HEADERS
 
 
+INDIAN_MONTHS = {
+    1: _('Caitra'),
+    2: _('Vaiśakh'),
+    3: _('Jyeṣṭ'),
+    4: _('Āṣāḍh'),
+    5: _('Śrāvaṇ'),
+    6: _('Bhādrapad'),
+    7: _('Aśvin'),
+    8: _('Kārtik'),
+    9: _('Mārgśīrṣa'),
+    10: _('Pauṣ'),
+    11: _('Māgh'),
+    12: _('Phālgun')
+}
+
+INDIAN_MONTH_SEASONS = {
+    **dict.fromkeys([1, 2], _('Vasant')),
+    **dict.fromkeys([3, 4], _('Grīṣma')),
+    **dict.fromkeys([5, 6], _('Varṣā')),
+    **dict.fromkeys([7, 8], _('Śarad')),
+    **dict.fromkeys([9, 10], _('Hemanta')),
+    **dict.fromkeys([11, 12], _('Śiśira'))
+}
+
+
 class SvasthyaQuestionTypeViewSet(viewsets.ViewSet):
     renderer_classes = (JSONRenderer, TemplateHTMLRenderer)
 
-    @wrap_api(template_name='appapi/components/svasthya_questionnaire.html')
+    @ wrap_api(template_name='appapi/components/svasthya_questionnaire.html')
     def list(self, request, format=None, template_name=None):
         response = requests.get(
             url=urljoin(CRF_API_URL_BASE, 'svasthyaquestiontype.json'),
@@ -49,7 +76,7 @@ class SvasthyaQuestionnaireViewSet(viewsets.ViewSet):
     # https://stackoverflow.com/questions/18925358/how-do-you-access-data-in-the-template-when-using-drf-modelviewset-and-templateh
     renderer_classes = (JSONRenderer, TemplateHTMLRenderer)
 
-    @wrap_api(
+    @ wrap_api(
         template_name='appapi/components/svasthya_questionnaires_card.html')
     def list(self, request, format=None, template_name=None):
         response = requests.get(
@@ -87,7 +114,7 @@ class SvasthyaQuestionnaireViewSet(viewsets.ViewSet):
         else:
             return context
 
-    @wrap_api_redirect(
+    @ wrap_api_redirect(
         redirect_to=reverse_lazy('webapp:wellness_assessment'),
         error_message=format_html(_(
             'Sorry, failed to save the questionnaire. Please try again later.'
@@ -226,9 +253,9 @@ class PrakritiQuestionnaireViewSet(viewsets.ViewSet):
         # questionnaires = PrakritiQuestionnaireSerializer(
         #     questionnaires_json['results'], many=True).data
         questionnaires = questionnaires_json['results']
+        questionnaire = questionnaires[0] if questionnaires else None
         context = {
-            'questionnaire': (
-                questionnaires[0] if questionnaires else None),
+            'questionnaire': questionnaire,
         }
         if request.accepted_renderer.format == 'html':
             if len(questionnaires) > 0:
@@ -275,24 +302,24 @@ class PrakritiQuestionnaireViewSet(viewsets.ViewSet):
         else:
             return response
 
-    @wrap_api(template_name='appapi/components/prakriti_questionnaire.html')
-    def retrieve(self, request, pk=None, format=None, template_name=None):
-        context = {}
-        response = requests.get(
-            url=urljoin(
-                CRF_API_URL_BASE,
-                'svasthyaquestionnaire/{}.json'.format(pk)),
-            headers=CRF_API_HEADERS,
-            json={
-                'patient_id': request.user.profile.crf_patient_pk
-            })
-        response.raise_for_status()
-        context['questionnaire'] = response.json()
-        if request.accepted_renderer.format == 'html':
-            template = loader.get_template(template_name=template_name)
-            return HttpResponse(template.render(context, request))
-        else:
-            return context
+    # @wrap_api(template_name='appapi/components/prakriti_questionnaire_form.html')
+    # def retrieve(self, request, pk=None, format=None, template_name=None):
+    #     context = {}
+    #     response = requests.get(
+    #         url=urljoin(
+    #             CRF_API_URL_BASE,
+    #             'prakritiquestionnaire/{}.json'.format(pk)),
+    #         headers=CRF_API_HEADERS,
+    #         json={
+    #             'patient_id': request.user.profile.crf_patient_pk
+    #         })
+    #     response.raise_for_status()
+    #     context['questionnaire'] = response.json()
+    #     if request.accepted_renderer.format == 'html':
+    #         template = loader.get_template(template_name=template_name)
+    #         return HttpResponse(template.render(context, request))
+    #     else:
+    #         return context
 
     @action(detail=False)
     @wrap_api(
@@ -320,5 +347,35 @@ class PrakritiQuestionnaireViewSet(viewsets.ViewSet):
         if request.accepted_renderer.format == 'html':
             template = loader.get_template(template_name)
             return HttpResponse(template.render(context, request))
+        else:
+            return Response(context)
+
+    @action(detail=False)
+    @wrap_api(template_name='appapi/components/ritucharya.html')
+    def ritucharya(self, request, format=None, template_name=None):
+        response = requests.get(
+            url=urljoin(CRF_API_URL_BASE, 'prakritiquestionnaire.json'),
+            headers=CRF_API_HEADERS,
+            data={'patient_id': request.user.profile.crf_patient_pk})
+        response.raise_for_status()
+        questionnaires_json = response.json()
+        questionnaires = questionnaires_json['results']
+        questionnaire = questionnaires[0] if questionnaires else None
+        prakriti_type = questionnaire['prakriti_impression'][0][0]
+        today = date.today()
+        indian_date = indian_civil.from_gregorian(
+            today.year, today.month, today.day)
+        context = {
+            'prakriti_type': prakriti_type,
+            'indian_date': f'{indian_date[2]}/{indian_date[1]}/{indian_date[0]}',
+            'indian_month': INDIAN_MONTHS[indian_date[1]],
+            'indian_season': INDIAN_MONTH_SEASONS[indian_date[1]],
+        }
+        if request.accepted_renderer.format == 'html':
+            if len(questionnaires) > 0:
+                template = loader.get_template(template_name)
+                return HttpResponse(template.render(context, request))
+            else:
+                return HttpResponse('')
         else:
             return Response(context)

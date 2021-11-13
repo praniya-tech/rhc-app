@@ -1,0 +1,157 @@
+{% load i18n %}
+
+<p>
+    {% blocktrans %}
+    Śaka date today: {{ indian_date }} (month {{ indian_month }}, season
+    {{ indian_season }})
+    {% endblocktrans %}
+</p>
+{% with prakriti_type=prakriti_type|lower ritu=indian_season|lower%}
+
+{% if prakriti_type|lower == 'kaphaja' %}
+
+{% if ritu == 'śiśir' %}
+
+<h4>
+    {% blocktrans %}
+    Recommendation for Kapha prakṛti - śiśir ṛtu (mid-January to mid-March)
+    {% endblocktrans %}
+</h4>
+<div class="text-left">
+    {% blocktrans %}
+    <ul>
+        <li>
+            Cereals – barley, corn, millet, rye, buckwheat.
+            Cereals in limited quantiy - oat, rice, wheat.
+        </li>
+        <li>
+            Pulses – Moog daal, red lentil.
+            Pulses in limited quantity - kidney beans, chickpeas, pinto, Lima,
+            Soy and split peas.
+        </li>
+        <li>
+            Oils – flaxseed, sunflower oil, ghee.
+        </li>
+        <li>
+            Milk products – low fat milk, yogurt or ghee made of low fat milk,
+            goat’s milk, sheep’s milk, soya milk.
+            Milk should be taken along with teaspoon of turmeric or ginger
+            which will reduce kapha increasing quality of milk.
+            Dairy products are known to increase kapha so better avoid them
+            or consume low fat, calorie version.
+        </li>
+        <li>
+            Vegetables – sweet bitter veggies like asparagus, cabbage, carrot,
+            garlic, radishes, onion, bean sprouts, green beans, peppers,
+            mushrooms, beetroot, etc.
+        </li>
+        <li>
+            Fruits – apple, pear, watermelon, pomegranate, apricot,
+            cranberries.
+            To be consumed in less quantity: bananas, pineapple, oranges,
+            coconut, dates.
+        </li>
+        <li>
+            Drinks - herbal tea, teas with cinnamon, ginger and bitter
+            substances, soups are best pacifying kapha.
+        </li>
+        <li>
+            Meat - chiken, turkey, eggs, prawns.
+        </li>
+        <li>
+            Seed and dry fruits - almond, chia seeds, pumpkin seed, sunflower
+            seeds.
+        </li>
+        <li>
+            Sweeteners - except for honey other sweeteners are better avoided.
+        </li>
+        <li>
+            Exercise – Kapha dominant people have highest endurance of all the
+            doshas and can perform any exercise for long period of time. It's
+            best that kapha person to exercise in the kapha time (early
+            morning) of day.
+        </li>
+        <li>
+            Ritucharya – kapha increases in shirish ritu so kapha person avoid
+            eating too sweet, fatty, heavy meals during this season. Engage in
+            moderate exercise and follow shishir ritu charya.
+        </li>
+        {% endblocktrans %}
+</div>
+
+{% elif ritu == 'śarad' %}
+
+<h4>
+    {% blocktrans %}
+    Recommendation for Kapha prakṛti – śarad ṛtu (mid-September to mid-November)
+    {% endblocktrans %}
+</h4>
+<div class="text-left">
+    <ul>
+        <li>
+            Cereals – barley, corn, millet, rye, buckwheat.
+            Cereals in limited quantiy - oat, rice, wheat.
+        </li>
+        <li>
+            Pulses – Moog daal, red lentil.
+            Pulses in limited quantity - kidney beans, chickpeas, pinto, Lima,
+            Soy and split peas.
+        </li>
+        <li>
+            Oils – flaxseed, sunflower oil, ghee.
+        </li>
+        <li>
+            Milk products – low fat milk, yogurt or ghee made of low fat milk,
+            goat’s milk, sheep’s milk, soya milk.
+            Milk should be taken along with teaspoon of turmeric or ginger
+            which will reduce kapha increasing quality of milk.
+            Dairy products are known to increase kapha so better avoid them
+            or consume low fat, calorie version.
+        </li>
+        <li>
+            Vegetables – sweet bitter veggies like asparagus, cabbage, carrot,
+            garlic, radishes, onion, bean sprouts, green beans, peppers,
+            mushrooms, beetroot, etc.
+        </li>
+        <li>
+            Fruits – apple, pear, watermelon, pomegranate, apricot,
+            cranberries.
+            To be consumed in less quantity: bananas, pineapple, oranges,
+            coconut, dates.
+        </li>
+        <li>
+            Drinks - herbal tea, teas with cinnamon, ginger and bitter
+            substances, soups are best pacifying kapha.
+        </li>
+        <li>
+            Meat - chiken, turkey, eggs, prawns.
+        </li>
+        <li>
+            Seed and dry fruits - almond, chia seeds, pumpkin seed, sunflower
+            seeds.
+        </li>
+        <li>
+            Sweeteners - except for honey other sweeteners are better avoided.
+        </li>
+        <li>
+            Exercise – Kapha dominant people have highest endurance of all the
+            doshas and can perform any exercise for long period of time. It's
+            best that kapha person to exercise in the kapha time (early
+            morning) of day.
+        </li>
+        <li>
+            As pitta dośa is prominent in this season try to avoid more spicy
+            food, hot drinks, or food/liquids of sour, salty, pungent taste.
+        </li>
+    </ul>
+</div>
+
+{% endif %}
+
+{% elif prakriti_type == 'vatika' %}
+
+{% elif prakriti_type == 'paittika' %}
+
+{% endif %}
+
+{% endwith %}

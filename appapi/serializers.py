@@ -58,4 +58,5 @@ class PrakritiQuestionnaireSerializer(serializers.Serializer):
     vatika_score = serializers.IntegerField()
     paittika_score = serializers.IntegerField()
     kaphaja_score = serializers.IntegerField()
+    prakriti_impression = serializers.ReadOnlyField()
     properties = PrakritiPropertySerializer(many=True)
