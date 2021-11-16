@@ -36,9 +36,9 @@ class PrakritiPropertyTypeSerializer(serializers.Serializer):
 class PrakritiOptionTypeSerializer(serializers.Serializer):
 
     PRAKRITI_PROPERTY_CHOICES = (
-        ('v', 'Vatika'),
-        ('p', 'Paittika'),
-        ('k', 'Kaphaja')
+        ('v', 'Vataj'),
+        ('p', 'Pittaj'),
+        ('k', 'Kaphaj')
     )
 
     id = serializers.IntegerField()
